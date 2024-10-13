@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MixedBagMinigames/static/css/main.f855e6bc.css",
+    "main.js": "/MixedBagMinigames/static/js/main.782399cc.js",
+    "index.html": "/MixedBagMinigames/index.html",
+    "main.f855e6bc.css.map": "/MixedBagMinigames/static/css/main.f855e6bc.css.map",
+    "main.782399cc.js.map": "/MixedBagMinigames/static/js/main.782399cc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.782399cc.js"
+  ]
+}
