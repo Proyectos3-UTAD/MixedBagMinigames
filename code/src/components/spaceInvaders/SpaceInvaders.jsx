@@ -1,6 +1,11 @@
-function SpaceInvaders() {
+function SpaceInvaders({screenChanger}) {
 
-    //prueba
+    return (
+        <div>
+            <h1>Space invaders</h1>
+            <p>WIP</p>
+        </div>
+    );
 
 }
 
