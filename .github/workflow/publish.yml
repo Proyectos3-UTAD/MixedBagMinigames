@@ -1,0 +1,5 @@
+name: pages-build-deployment
+on:
+  push:
+    branches:
+      - gh-pages
