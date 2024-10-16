@@ -11,3 +11,9 @@
     cursor: pointer;
     transition: all 0.3s;
 }
+
+.GameMiniature:hover {
+    transform: scale(1.05);
+    background-color: #61dafb;
+    font-weight: bold;
+}

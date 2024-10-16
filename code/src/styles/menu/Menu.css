@@ -1,0 +1,20 @@
+.Menu {
+
+}
+
+.MenuTitle {
+    text-align: center;
+    color: #1b9c66;
+}
+
+.GameDisplayTable {
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.ImagePong {
+    /*background-image: url("https://icons.veryicon.com/png/o/game/game-entertainment-related-series/pong-1.png");*/
+}

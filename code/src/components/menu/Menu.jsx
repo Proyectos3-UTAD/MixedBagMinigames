@@ -1,3 +1,11 @@
+/**
+ * Styles
+ */
+import '../../styles/menu/Menu.css';
+
+/**
+ * Components
+ */
 import GameMiniature from "./GameMiniature";
 import Snake from "../snake/Snake";
 import SpaceInvaders from "../spaceInvaders/SpaceInvaders";
@@ -6,64 +14,66 @@ import AtariBreakout from "../atariBreakOut/AtariBreakout";
 
 function Menu({screenChanger}) {
     return (
-        <div>
-            <h1>MixedBag Minigames</h1>
+        <div className={"Menu"}>
+            <h1 className={"MenuTitle"}>MixedBag Minigames</h1>
 
-            <GameMiniature
+            <div className={"GameDisplayTable"}>
+                <GameMiniature
 
-                screenChanger={screenChanger}
-                gameName={"Pong"}
+                    style={{backgroundImage: "url("}}
+                    screenChanger={screenChanger}
+                    gameName={"Pong"}
 
-                gameComponent={
-                    <Pong screenChanger={screenChanger}/>
-                }/>
+                    gameComponent={
+                        <Pong screenChanger={screenChanger}/>
+                    }/>
 
-            <GameMiniature
+                <GameMiniature
 
-                screenChanger={screenChanger}
-                gameName={"MineSweeper"}
+                    screenChanger={screenChanger}
+                    gameName={"MineSweeper"}
 
-                gameComponent={
-                    <Snake screenChanger={screenChanger}/>
-                }/>
-
-
-            <GameMiniature
-
-                screenChanger={screenChanger}
-                gameName={"Snake"}
-
-                gameComponent={
-                    <Snake screenChanger={screenChanger}/>
-                }/>
-
-            <GameMiniature
-
-                screenChanger={screenChanger}
-                gameName={"PacMan"}
-
-                gameComponent={
-                    <Snake screenChanger={screenChanger}/>
-                }/>
-
-            <GameMiniature
-
-                screenChanger={screenChanger}
-                gameName={"SpaceInvaders"}
-
-                gameComponent={
-                    <SpaceInvaders screenChanger={screenChanger}/>
-                }/>
-            <GameMiniature
-
-                screenChanger={screenChanger}
-                gameName={"Atari Breakout"}
-
-                gameComponent={
-                    <AtariBreakout screenChanger={screenChanger}/>
-                }/>
+                    gameComponent={
+                        <Snake screenChanger={screenChanger}/>
+                    }/>
 
 
+                <GameMiniature
+
+                    screenChanger={screenChanger}
+                    gameName={"Snake"}
+
+                    gameComponent={
+                        <Snake screenChanger={screenChanger}/>
+                    }/>
+
+                <GameMiniature
+
+                    screenChanger={screenChanger}
+                    gameName={"PacMan"}
+
+                    gameComponent={
+                        <Snake screenChanger={screenChanger}/>
+                    }/>
+
+                <GameMiniature
+
+                    screenChanger={screenChanger}
+                    gameName={"SpaceInvaders"}
+
+                    gameComponent={
+                        <SpaceInvaders screenChanger={screenChanger}/>
+                    }/>
+                <GameMiniature
+
+                    screenChanger={screenChanger}
+                    gameName={"Atari Breakout"}
+
+                    gameComponent={
+                        <AtariBreakout screenChanger={screenChanger}/>
+                    }/>
+
+            </div>
         </div>
     );
 }
