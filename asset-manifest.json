@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/MixedBagMinigames/static/css/main.f855e6bc.css",
-    "main.js": "/MixedBagMinigames/static/js/main.782399cc.js",
+    "main.css": "/MixedBagMinigames/static/css/main.253385f1.css",
+    "main.js": "/MixedBagMinigames/static/js/main.8a038931.js",
+    "static/media/minesweeperMiniature.png": "/MixedBagMinigames/static/media/minesweeperMiniature.3bdf6ef975e8e4721775.png",
+    "static/media/snakeMiniature.png": "/MixedBagMinigames/static/media/snakeMiniature.f33cc9b74f4bd0c302e4.png",
+    "static/media/atariMiniature.jpg": "/MixedBagMinigames/static/media/atariMiniature.44d2c6835e2bb749a401.jpg",
+    "static/media/pacmanMiniature.png": "/MixedBagMinigames/static/media/pacmanMiniature.5f8420f16797fd6ea057.png",
+    "static/media/pongMiniature.png": "/MixedBagMinigames/static/media/pongMiniature.407cab2ce7d2e5f10c45.png",
+    "static/media/spaceinvadersMiniature.png": "/MixedBagMinigames/static/media/spaceinvadersMiniature.92c93b25ade115929dd4.png",
     "index.html": "/MixedBagMinigames/index.html",
-    "main.f855e6bc.css.map": "/MixedBagMinigames/static/css/main.f855e6bc.css.map",
-    "main.782399cc.js.map": "/MixedBagMinigames/static/js/main.782399cc.js.map"
+    "main.253385f1.css.map": "/MixedBagMinigames/static/css/main.253385f1.css.map",
+    "main.8a038931.js.map": "/MixedBagMinigames/static/js/main.8a038931.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.782399cc.js"
+    "static/css/main.253385f1.css",
+    "static/js/main.8a038931.js"
   ]
 }
