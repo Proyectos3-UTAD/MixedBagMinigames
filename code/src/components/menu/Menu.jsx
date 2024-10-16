@@ -20,55 +20,57 @@ function Menu({screenChanger}) {
             <div className={"GameDisplayTable"}>
                 <GameMiniature
 
-                    style={{backgroundImage: "url("}}
-                    screenChanger={screenChanger}
                     gameName={"Pong"}
+                    gameCssClass={"ImagePong"}
 
+                    screenChanger={screenChanger}
                     gameComponent={
                         <Pong screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
-
-                    screenChanger={screenChanger}
                     gameName={"MineSweeper"}
+                    gameCssClass={"ImageMineSweeper"}
 
+                    screenChanger={screenChanger}
                     gameComponent={
                         <Snake screenChanger={screenChanger}/>
                     }/>
 
-
                 <GameMiniature
-
-                    screenChanger={screenChanger}
                     gameName={"Snake"}
+                    gameCssClass={"ImageSnake"}
 
+                    screenChanger={screenChanger}
                     gameComponent={
                         <Snake screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
 
-                    screenChanger={screenChanger}
                     gameName={"PacMan"}
+                    gameCssClass={"ImagePacman"}
 
+                    screenChanger={screenChanger}
                     gameComponent={
                         <Snake screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
+                    gameName={"SpaceInvaders"}
+                    gameCssClass={"ImageSpaceInvaders"}
 
                     screenChanger={screenChanger}
-                    gameName={"SpaceInvaders"}
-
                     gameComponent={
                         <SpaceInvaders screenChanger={screenChanger}/>
                     }/>
+
                 <GameMiniature
 
-                    screenChanger={screenChanger}
                     gameName={"Atari Breakout"}
+                    gameCssClass={"ImageAtariBreakout   "}
 
+                    screenChanger={screenChanger}
                     gameComponent={
                         <AtariBreakout screenChanger={screenChanger}/>
                     }/>
