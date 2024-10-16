@@ -2,7 +2,7 @@ name: Web page deployment
 on:
   push:
     branches:
-      - gh-pages
+      - menu
 jobs:
   build:
     runs-on: ubuntu-latest
