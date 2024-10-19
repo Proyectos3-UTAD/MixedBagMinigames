@@ -1,15 +1,14 @@
 import HomeMenuButton from "../common/HomeMenuButton";
 
-function SpaceInvaders({screenChanger}) {
-
+function Pong({screenChanger}) {
     return (
         <div>
-            <h1>Space invaders</h1>
+            <h1>Pong</h1>
             <p>WIP</p>
             <HomeMenuButton screenChanger={screenChanger}/>
+            
         </div>
-    );
-
+    )
 }
 
-export default SpaceInvaders;
+export default Pong;

@@ -1,10 +1,10 @@
 import HomeMenuButton from "../common/HomeMenuButton";
 
-function SpaceInvaders({screenChanger}) {
+function AtariBreakout({screenChanger}) {
 
     return (
         <div>
-            <h1>Space invaders</h1>
+            <h1>Atari Breakout</h1>
             <p>WIP</p>
             <HomeMenuButton screenChanger={screenChanger}/>
         </div>
@@ -12,4 +12,4 @@ function SpaceInvaders({screenChanger}) {
 
 }
 
-export default SpaceInvaders;
+export default AtariBreakout;
