@@ -7,7 +7,7 @@ import '../../styles/menu/Menu.css';
  * Components
  */
 import GameMiniature from "./GameMiniature";
-import Snake from "../snake/Snake";
+import SnakeGame from "../snake/SnakeGame";
 import SpaceInvaders from "../spaceInvaders/SpaceInvaders";
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";
@@ -34,7 +34,7 @@ function Menu({screenChanger}) {
 
                     screenChanger={screenChanger}
                     gameComponent={
-                        <Snake screenChanger={screenChanger}/>
+                        <SnakeGame screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
@@ -43,7 +43,7 @@ function Menu({screenChanger}) {
 
                     screenChanger={screenChanger}
                     gameComponent={
-                        <Snake screenChanger={screenChanger}/>
+                        <SnakeGame screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
@@ -53,7 +53,7 @@ function Menu({screenChanger}) {
 
                     screenChanger={screenChanger}
                     gameComponent={
-                        <Snake screenChanger={screenChanger}/>
+                        <SnakeGame screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
