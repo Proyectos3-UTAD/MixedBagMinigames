@@ -11,6 +11,7 @@ import Snake from "../snake/Snake";
 import SpaceInvaders from "../spaceInvaders/SpaceInvaders";
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";
+import PacMan from '../pacMan/pacMan';
 
 function Menu({screenChanger}) {
     return (
@@ -53,7 +54,7 @@ function Menu({screenChanger}) {
 
                     screenChanger={screenChanger}
                     gameComponent={
-                        <Snake screenChanger={screenChanger}/>
+                        <PacMan  screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
