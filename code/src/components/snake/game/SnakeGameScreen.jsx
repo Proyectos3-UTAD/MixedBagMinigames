@@ -18,6 +18,7 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
 
     const directionChanger = (newDirection) => {
         if (newDirection !== null) {
+            setInputDirection(Directions.NONE);
             setInputDirection(newDirection);
         }
     }
@@ -30,43 +31,27 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
     }
 
     const changeCurrentFruitPosition = (position) => {
-        if (position !== "undefined-undefined")
-            setFruitCurrentPos(position);
-        else
-            setFruitCurrentPos(Position.getStringNotation(0, 0));
+        setFruitCurrentPos(position);
+    }
+
+    const tick = () => {
+
+        console.log(inputDirection)
+
+        changeBoardContents(fruitCurrentPos, undefined);
+        changeCurrentFruitPosition(Position.getNextPositionStringNotationFromString(fruitCurrentPos, inputDirection));
+        changeBoardContents(fruitCurrentPos, <Fruit/>)
+
+        console.log(fruitCurrentPos)
     }
 
     useEffect(() => {
 
-        console.log("Newdir", inputDirection);
-        changeBoardContents(fruitCurrentPos, undefined);
-        console.log("Currpos", fruitCurrentPos)
-        const nextPos = Position.getNextPositionStringNotationFromString(fruitCurrentPos, inputDirection);
-        console.log("Nextpos", nextPos)
-        changeCurrentFruitPosition(nextPos);
-        changeBoardContents(fruitCurrentPos, <Fruit/>)
+        const interval = setInterval(tick, 1000);
 
-    }, [inputDirection]);
+        return () => clearInterval(interval);
 
-    useEffect(() => {
-
-        console.log("Fruit pos", fruitCurrentPos);
-
-    }, [fruitCurrentPos]);
-
-    // useEffect(() => {
-    //
-    //     setInterval(() => {
-    //
-
-    //
-    //         // console.log(boardContents);
-    //         console.log("fruitpos", fruitCurrentPos);
-    //         console.log("inputDirection", inputDirection);
-    //
-    //     }, 5000);
-    //
-    // }, []);
+    }, []);
 
     return (
         <div>

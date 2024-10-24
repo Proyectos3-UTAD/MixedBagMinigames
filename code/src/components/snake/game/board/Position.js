@@ -14,20 +14,13 @@ class Position {
 
     static getNextPositionStringNotationFromString(stringPosition, direction) {
         const {x, y} = Position.parseStringNotation(stringPosition);
-        console.log("Coordinate check", x, y);
         return Position.getNextPositionStringNotation(x, y, direction);
     }
 
     static getNextPositionStringNotation(x, y, direction) {
 
-        const {nextX, nextY} = Position.getNextPosition(x, y, direction);
-
-        console.log("Coordinate check movement", x, y, direction);
-
-        let str = Position.getStringNotation(nextX, nextY);
-
-        console.log("String res position", str)
-        return str;
+        const {newX, newY} = Position.getNextPosition(Number(x), Number(y), direction);
+        return Position.getStringNotation(newX, newY);
 
     }
 
@@ -41,7 +34,7 @@ class Position {
                 newY = y;
                 break;
             case Directions.LEFT:
-                newX = x + 1;
+                newX = x - 1;
                 newY = y;
                 break;
             case Directions.RIGHT:
