@@ -1,3 +1,12 @@
+/**
+ * Styles
+ */
+import '../../../../styles/snake/Fruit.css';
+
+/**
+ * Components
+ */
+
 function Fruit() {
 
     return (

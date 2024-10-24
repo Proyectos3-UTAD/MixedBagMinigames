@@ -7,13 +7,12 @@ import InputHandler from "../../common/utils/InputHandler";
 
 import Directions from "../../common/constants/Directions";
 import Fruit from "./fruits/Fruit";
+import FruitPositionGenerator from "./fruits/FruitPositionGenerator";
 
 function SnakeGameScreen({screenChanger, gameOptions}) {
 
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
-    const [boardContents, setBoardContents] = useState({
-        "0-0": <Fruit/>
-    });
+    const [boardContents, setBoardContents] = useState({});
 
 
     const directionChanger = (newDirection) => {
