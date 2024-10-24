@@ -1,44 +1,44 @@
 import React, {useEffect} from 'react';
 import Directions from "../constants/Directions";
 
-function InputHandler({directionChanger}) {
+function InputHandler({directionChanger, content}) {
 
     const handleKeyDown = (event) => {
-        switch (event.key) {
+        switch (event.key.toLowerCase()) {
             case "w":
-            case "W":
-            case "ArrowUp":
-                directionChanger(Directions.UP)
+            case "arrowup":
+                directionChanger(Directions.UP);
                 break;
 
             case "s":
-            case "S":
-            case "ArrowDown":
-                directionChanger(Directions.DOWN)
+            case "arrowdown":
+                directionChanger(Directions.DOWN);
                 break;
 
             case "d":
-            case "D":
-            case "ArrowRight":
-                directionChanger(Directions.RIGHT)
+            case "arrowright":
+                directionChanger(Directions.RIGHT);
                 break;
 
             case "a":
-            case "A":
-            case "ArrowLeft":
-                directionChanger(Directions.LEFT)
+            case "arrowleft":
+                directionChanger(Directions.LEFT);
+                break;
+
+            default:
                 break;
         }
     }
 
     useEffect(() => {
 
-        window.addEventListener('keydown', handleKeyDown, true);
+        window.addEventListener('keydown', handleKeyDown);
 
     }, []);
 
     return (
         <>
+            {content}
         </>
     );
 

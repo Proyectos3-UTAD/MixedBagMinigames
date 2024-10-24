@@ -13,7 +13,7 @@ function FruitPositionGenerator(boardContents, boardDimensions) {
         }
     }
 
-    return availablePositions[(Math.floor(Math.random() * availablePositions.length))];
+    return availablePositions[(Math.floor(Math.random() * availablePositions.length))][0];
 
 }
 
