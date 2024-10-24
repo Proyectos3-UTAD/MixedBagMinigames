@@ -1,3 +1,0 @@
-const fruitPositionGenerator = (snake, boardSize) => {
-        
-}

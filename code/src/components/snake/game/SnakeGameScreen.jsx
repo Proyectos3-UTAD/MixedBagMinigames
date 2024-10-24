@@ -6,10 +6,15 @@ import SnakeHomeButton from "../SnakeHomeButton";
 import InputHandler from "../../common/utils/InputHandler";
 
 import Directions from "../../common/constants/Directions";
+import Fruit from "./fruits/Fruit";
 
 function SnakeGameScreen({screenChanger, gameOptions}) {
 
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
+    const [boardContents, setBoardContents] = useState({
+        "0-0": <Fruit/>
+    });
+
 
     const directionChanger = (newDirection) => {
         setInputDirection(newDirection);
@@ -22,7 +27,7 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
             <HomeMenuButton screenChanger={screenChanger}/>
             <SnakeHomeButton screenChanger={screenChanger}/>
 
-            <Board boardDimensions={gameOptions.boardDimensions}/>
+            <Board boardContents={boardContents} boardDimensions={gameOptions.boardDimensions}/>
         </div>
     );
 }
