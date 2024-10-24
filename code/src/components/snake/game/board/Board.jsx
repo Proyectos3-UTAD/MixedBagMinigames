@@ -1,7 +1,7 @@
 /**
  * Styles
  */
-import '../../styles/snake/Board.css';
+import '../../../../styles/snake/Board.css';
 
 /**
  * Components
@@ -9,7 +9,7 @@ import '../../styles/snake/Board.css';
 import BoardSquare from "./BoardSquare";
 
 
-function Board({boardWidth, boardHeight}) {
+function Board({boardContents, boardWidth, boardHeight}) {
 
     const boardSquares = [];
 
@@ -29,14 +29,14 @@ function Board({boardWidth, boardHeight}) {
             <BoardSquare
                 boardColor={lightSquare ? "LightSquare" : "DarkSquare"}
                 rounded={isBoardCorner(i)}
-                ç
+
             />
         );
         lightSquare = !lightSquare;
     }
 
     return (
-        <canvas
+        <div
             className={"Board"}
             style={{
                 gridTemplateColumns: `repeat(${boardWidth}, 1fr)`,
@@ -48,7 +48,7 @@ function Board({boardWidth, boardHeight}) {
 
             })
             }
-        </canvas>
+        </div>
     );
 }
 

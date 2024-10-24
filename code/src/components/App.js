@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import {useState, useEffect} from "react";
 import Menu from "./menu/Menu";
+import SnakeHomeScreen from "./snake/SnakeHomeScreen";
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     }
 
     useEffect(() => {
-        setScreen(<Menu screenChanger={screenChanger}/>);
+        setScreen(<SnakeHomeScreen screenChanger={screenChanger}/>);
     }, []);
 
     return (

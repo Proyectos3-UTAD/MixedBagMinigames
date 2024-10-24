@@ -1,7 +1,7 @@
 /**
  * Styles
  */
-import '../../styles/snake/Board.css';
+import '../../../../styles/snake/Board.css';
 
 /**
  * Components
@@ -13,7 +13,7 @@ function BoardSquare({boardColor, rounded}) {
         <div
             className={`board-square ${boardColor}`}
             style={{
-                borderRadius: rounded ? "5px" : "0"
+                borderRadius: rounded ? "0 0 5px 0" : "0"
             }}>
         </div>
     );
