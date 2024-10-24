@@ -37,9 +37,9 @@ function SnakeHomeScreen({screenChanger}) {
     */
 
     const [gameOptions, setGameOptions] = useState({
-        board: {
-            width: 9,
-            height: 9,
+        boardDimensions: {
+            width: 10,
+            height: 10,
         },
         fruitsOnScreen: 1,
         snakeSpeed: 1,

@@ -12,16 +12,17 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
 
     const directionChanger = (newDirection) => {
-        console.log(newDirection);
         setInputDirection(newDirection);
     }
 
     return (
         <div>
+
             <InputHandler directionChanger={directionChanger}/>
             <HomeMenuButton screenChanger={screenChanger}/>
             <SnakeHomeButton screenChanger={screenChanger}/>
-            <Board boardWidth={gameOptions.board.width} boardHeight={gameOptions.board.height}/>
+
+            <Board boardDimensions={gameOptions.boardDimensions}/>
         </div>
     );
 }

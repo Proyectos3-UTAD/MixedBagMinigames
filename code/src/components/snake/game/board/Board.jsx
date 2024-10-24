@@ -8,46 +8,68 @@ import '../../../../styles/snake/Board.css';
  */
 import BoardSquare from "./BoardSquare";
 
+function getCornerClass(xCoordinate, yCoordinate, boardWidth, boardHeight) {
 
-function Board({boardContents, boardWidth, boardHeight}) {
+    if ((yCoordinate === 0) && (xCoordinate === 0)) {
+        return "up-left-snake-board-square";
+    } else if ((yCoordinate === 0) && (xCoordinate === boardWidth - 1)) {
+        return "up-right-snake-board-square";
+    } else if ((yCoordinate === boardHeight - 1) && (xCoordinate === 0)) {
+        return "down-left-snake-board-square";
+    } else if ((yCoordinate === boardHeight - 1) && (xCoordinate === boardWidth - 1)) {
+        return "down-right-snake-board-square";
+    }
+    return null;
+}
 
-    const boardSquares = [];
+function GenerateSquares(boardContents, boardWith, boardHeight) {
 
-    const isBoardCorner = (i) => {
-        return (
-            i === 0 ||
-            i === boardWidth - 1 ||
-            i === boardWidth * (boardHeight - 1) ||
-            i === boardWidth * boardHeight - 1
-        );
+    const squares = [];
+
+    let rowStartsWithLightSquare = true;
+    let isLightSquare = true;
+
+
+    for (let y = 0; y < boardHeight; y++) {
+
+        isLightSquare = rowStartsWithLightSquare
+
+        for (let x = 0; x < boardWith; x++) {
+
+            let cornerClass = getCornerClass(x, y, boardWith, boardHeight);
+
+            squares.push(
+                <BoardSquare
+                    content={boardContents?.[`${x}-${y}`]}
+                    className={
+                        `snake-board-square ${isLightSquare === true ? 'snake-LightSquare' : 'snake-DarkSquare'} ${cornerClass ? cornerClass : ''}`
+                    }
+                />
+            );
+
+            isLightSquare = !isLightSquare;
+        }
+
+        rowStartsWithLightSquare = !rowStartsWithLightSquare;
+
     }
 
-    let lightSquare = true;
+    return squares;
+}
 
-    for (let i = 0; i < boardWidth * boardHeight; i++) {
-        boardSquares.push(
-            <BoardSquare
-                boardColor={lightSquare ? "LightSquare" : "DarkSquare"}
-                rounded={isBoardCorner(i)}
+function Board({boardContents, boardDimensions}) {
 
-            />
-        );
-        lightSquare = !lightSquare;
-    }
+    const boardSquares = GenerateSquares(boardContents, boardDimensions.width, boardDimensions.height);
 
     return (
         <div
-            className={"Board"}
+            className={"snake-Board"}
             style={{
-                gridTemplateColumns: `repeat(${boardWidth}, 1fr)`,
-                gridTemplateRows: `repeat(${boardHeight}, 1fr)`
+                gridTemplateColumns: `repeat(${boardDimensions.width}, 1fr)`,
+                gridTemplateRows: `repeat(${boardDimensions.height}, 1fr)`
             }}
         >
-            {boardSquares.map((boardSquare) => {
-                return boardSquare;
-
-            })
-            }
+            {boardSquares}
         </div>
     );
 }
