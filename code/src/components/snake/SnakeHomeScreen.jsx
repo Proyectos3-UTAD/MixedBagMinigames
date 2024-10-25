@@ -9,6 +9,7 @@ import HomeMenuButton from "../common/HomeMenuButton";
 import Board from "./game/board/Board";
 import {useState} from "react";
 import SnakeGameScreen from "./game/SnakeGameScreen";
+import SnakeImported from "./import/SnakeImported";
 
 
 function SnakeHomeScreen({screenChanger}) {
@@ -50,12 +51,13 @@ function SnakeHomeScreen({screenChanger}) {
     }
     return (
         <div>
-            <h1>Snake</h1>
-            <button
-                onClick={startGame}>Play
-            </button>
-            <p>Mode</p>
-            <p>Scores</p>
+            <SnakeImported/>
+            {/*<h1>Snake</h1>*/}
+            {/*<button*/}
+            {/*    onClick={startGame}>Play*/}
+            {/*</button>*/}
+            {/*<p>Mode</p>*/}
+            {/*<p>Scores</p>*/}
         </div>
     );
 }
