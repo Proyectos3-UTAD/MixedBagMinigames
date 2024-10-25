@@ -16,10 +16,10 @@ function SnakeHomeScreen({screenChanger}) {
     /*Partes del juego de la serpiente:
 
        - Moverse
-            - Detectar teclas
+            - Detectar teclas (Done)
             - Obtener dirección de movimiento
             - Actualizar posición de la serpiente
-            - Pintar por pantalla
+            - Pintar por pantalla (Done)
 
        - Colisionar
             - Detectar con que
@@ -27,7 +27,7 @@ function SnakeHomeScreen({screenChanger}) {
                     - Morir
                 - Fruta
                     - Comer
-                    - Pintar nueva fruta
+                    - Pintar nueva fruta (Done)
        - Comer
             - Generar nuevo bloque de serpiente
             - Situarlo en la parte posterior de la cola cuando avance

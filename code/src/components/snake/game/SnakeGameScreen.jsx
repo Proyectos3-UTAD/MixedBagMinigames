@@ -9,16 +9,18 @@ import Directions from "../../common/constants/Directions";
 import Fruit from "./fruits/Fruit";
 import FruitPositionGenerator from "./fruits/FruitPositionGenerator";
 import Position from "./board/Position";
+import Snake from "./snake/Snake";
 
 function SnakeGameScreen({screenChanger, gameOptions}) {
 
-    const [inputDirection, setInputDirection] = useState(Directions.NONE);
-    const [boardContents, setBoardContents] = useState({});
+    const [inputDirection, setInputDirection] = useState(Directions.UP);
+    const [boardContents, setBoardContents] = useState({
+        "3-3": <Snake/>
+    });
     const [fruitCurrentPos, setFruitCurrentPos] = useState(FruitPositionGenerator(boardContents, gameOptions.boardDimensions));
 
     const directionChanger = (newDirection) => {
         if (newDirection !== null) {
-            setInputDirection(Directions.NONE);
             setInputDirection(newDirection);
         }
     }
@@ -36,15 +38,22 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
 
     const tick = () => {
 
-        console.log(inputDirection)
-
+        console.log("Ticking, fruitpos:", fruitCurrentPos, "direction:", inputDirection);
+        console.log(boardContents);
         changeBoardContents(fruitCurrentPos, undefined);
         changeCurrentFruitPosition(Position.getNextPositionStringNotationFromString(fruitCurrentPos, inputDirection));
-        changeBoardContents(fruitCurrentPos, <Fruit/>)
 
-        console.log(fruitCurrentPos)
     }
 
+
+    useEffect(() => {
+        console.log(inputDirection)
+    }, [inputDirection]);
+
+    useEffect(() => {
+        console.log(fruitCurrentPos);
+        changeBoardContents(fruitCurrentPos, <Fruit/>);
+    }, [fruitCurrentPos]);
     useEffect(() => {
 
         const interval = setInterval(tick, 1000);
@@ -52,7 +61,6 @@ function SnakeGameScreen({screenChanger, gameOptions}) {
         return () => clearInterval(interval);
 
     }, []);
-
     return (
         <div>
 
