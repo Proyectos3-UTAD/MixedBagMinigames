@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import {useState, useEffect} from "react";
 import Menu from "./menu/Menu";
-import SnakeHomeScreen from "./snake/SnakeHomeScreen";
+import SnakeHomeScreen from "./snake/SnakeHomeScreen.tsx";
 
 function App() {
 

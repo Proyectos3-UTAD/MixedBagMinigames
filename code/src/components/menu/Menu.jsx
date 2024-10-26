@@ -7,7 +7,7 @@ import '../../styles/menu/Menu.css';
  * Components
  */
 import GameMiniature from "./GameMiniature";
-import SnakeHomeScreen from "../snake/SnakeHomeScreen";
+import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
 import SpaceInvaders from "../spaceInvaders/SpaceInvaders";
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";

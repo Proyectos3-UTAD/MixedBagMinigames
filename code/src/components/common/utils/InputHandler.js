@@ -1,12 +1,18 @@
 import Directions from "../constants/Directions";
 
-
+/**
+ * Changes certain keystrokes into directions for better abstraction.
+ */
 class InputHandler {
 
     constructor(directionChanger) {
         this.directionChanger = directionChanger;
     }
 
+    /**
+     * On key down custom event that processes directions
+     * @param event The event of a keyStroke.
+     */
     onKeyDown = (event) => {
         switch (event.key.toLowerCase()) {
             case "w":

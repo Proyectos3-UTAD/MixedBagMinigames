@@ -7,12 +7,17 @@
  */
 import HomeMenuButton from "../common/HomeMenuButton";
 import Board from "./game/board/Board";
-import {useState} from "react";
-import SnakeGameScreen from "./game/SnakeGameScreen";
-import SnakeImported from "./import/SnakeImported";
+import {useState, ReactElement} from "react";
+import SnakeGameScreen from "./game/SnakeGameScreen.tsx";
 
-
-function SnakeHomeScreen({screenChanger}) {
+// import SnakeImported from "./import/SnakeImported";
+/**
+ * Home screen of the snake minigame.
+ * @param screenChanger The state setter to change the screen contents.
+ * @returns {JSX.Element} The main menu of the snake mini game
+ * @constructor
+ */
+function SnakeHomeScreen({screenChanger}): ReactElement {
 
     /*Partes del juego de la serpiente:
 
@@ -46,7 +51,7 @@ function SnakeHomeScreen({screenChanger}) {
         snakeSpeed: 1,
     });
 
-    const startGame = () => {
+    const startGame = (): void => {
         screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameOptions={gameOptions}/>)
     }
     return (

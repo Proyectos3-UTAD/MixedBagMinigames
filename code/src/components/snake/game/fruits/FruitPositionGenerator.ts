@@ -1,6 +1,13 @@
 import Position from "../board/Position";
 
-function FruitPositionGenerator(boardContents, boardDimensions) {
+/**
+ * Generates a position for the fruit.
+ * @param boardContents The contents of the board (to avoid overlap)
+ * @param boardDimensions The dimensions of the board (to make sure the fruit is in boar bounds)
+ * @returns {*}
+ * @constructor
+ */
+function FruitPositionGenerator(boardContents: {}, boardDimensions): Position {
 
     const availablePositions = [];
 
