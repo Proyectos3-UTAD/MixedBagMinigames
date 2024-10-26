@@ -28,10 +28,10 @@ class GameSettings {
      * @param snakeValues Settings of the snake in game
      */
     constructor(
-        boardDimensions: BoardDimensions,
-        boardColors: BoardColors,
-        fruitValues: FruitValues,
-        snakeValues: SnakeValues
+        boardDimensions: BoardDimensions = new BoardDimensions(9, 10),
+        boardColors: BoardColors = new BoardColors("snake-LightSquare", "snake-DarkSquare"),
+        fruitValues: FruitValues = new FruitValues(1),
+        snakeValues: SnakeValues = new SnakeValues(1)
     ) {
 
         this._boardDimensions = boardDimensions;

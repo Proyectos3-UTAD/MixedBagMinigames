@@ -10,6 +10,11 @@ import Board from "./game/board/Board";
 import {useState, ReactElement} from "react";
 import SnakeGameScreen from "./game/SnakeGameScreen.tsx";
 
+/**
+ * Classes
+ */
+import GameSettings from "./settings/GameSettings.ts";
+
 // import SnakeImported from "./import/SnakeImported";
 /**
  * Home screen of the snake minigame.
@@ -42,18 +47,12 @@ function SnakeHomeScreen({screenChanger}): ReactElement {
 
     */
 
-    const [gameOptions, setGameOptions] = useState({
-        boardDimensions: {
-            width: 10,
-            height: 10,
-        },
-        fruitsOnScreen: 1,
-        snakeSpeed: 1,
-    });
+    const [gameOptions, setGameOptions] = useState(new GameSettings());
 
     const startGame = (): void => {
         screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameOptions={gameOptions}/>)
     }
+
     return (
         <div>
             {/*<SnakeImported/>*/}
