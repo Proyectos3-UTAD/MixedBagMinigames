@@ -1,7 +1,7 @@
 /**
  * Styles
  */
-import '../../../../styles/snake/Fruit';
+import '../../../../styles/snake/Fruit.css';
 
 /**
  * Components

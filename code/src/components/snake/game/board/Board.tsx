@@ -41,7 +41,7 @@ function GenerateSquares(boardContents, boardWith, boardHeight) {
 
             squares.push(
                 <BoardSquare
-                    content={boardContents?.[`${Position.getStringNotation(x, y)}`]}
+                    content={boardContents.get(new Position(x, y).toString())}
                     classNames={
                         `snake-board-square ${isLightSquare === true ? 'snake-LightSquare' : 'snake-DarkSquare'} ${cornerClass ? cornerClass : ''}`
                     }
