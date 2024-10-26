@@ -51,13 +51,13 @@ function SnakeHomeScreen({screenChanger}) {
     }
     return (
         <div>
-            <SnakeImported/>
-            {/*<h1>Snake</h1>*/}
-            {/*<button*/}
-            {/*    onClick={startGame}>Play*/}
-            {/*</button>*/}
-            {/*<p>Mode</p>*/}
-            {/*<p>Scores</p>*/}
+            {/*<SnakeImported/>*/}
+            <h1>Snake</h1>
+            <button
+                onClick={startGame}>Play
+            </button>
+            <p>Mode</p>
+            <p>Scores</p>
         </div>
     );
 }

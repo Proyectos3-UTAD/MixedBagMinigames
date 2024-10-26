@@ -14,64 +14,26 @@ import Snake from "./snake/Snake";
 function SnakeGameScreen({screenChanger, gameOptions}) {
 
     const [inputDirection, setInputDirection] = useState(Directions.UP);
-    const [boardContents, setBoardContents] = useState({
-        "3-3": <Snake/>
-    });
-    const [fruitCurrentPos, setFruitCurrentPos] = useState(FruitPositionGenerator(boardContents, gameOptions.boardDimensions));
+    const [boardContents, setBoardContents] = useState({});
 
-    const directionChanger = (newDirection) => {
-        if (newDirection !== null) {
-            setInputDirection(newDirection);
-        }
-    }
+    // Start game sequence
+    const startGame = () => {
+        document.onkeydown = new InputHandler(setInputDirection).onKeyDown;
+    };
 
-    const changeBoardContents = (position, newContent) => {
-        setBoardContents((prevContents) => ({
-            ...prevContents,
-            [position]: newContent,
-        }));
-    }
-
-    const changeCurrentFruitPosition = (position) => {
-        setFruitCurrentPos(position);
-    }
-
-    const tick = () => {
-
-        console.log("Ticking, fruitpos:", fruitCurrentPos, "direction:", inputDirection);
-        console.log(boardContents);
-        changeBoardContents(fruitCurrentPos, undefined);
-        changeCurrentFruitPosition(Position.getNextPositionStringNotationFromString(fruitCurrentPos, inputDirection));
-
-    }
-
+    useEffect(startGame, []);
 
     useEffect(() => {
         console.log(inputDirection)
     }, [inputDirection]);
 
-    useEffect(() => {
-        console.log(fruitCurrentPos);
-        changeBoardContents(fruitCurrentPos, <Fruit/>);
-    }, [fruitCurrentPos]);
-    useEffect(() => {
 
-        const interval = setInterval(tick, 1000);
-
-        return () => clearInterval(interval);
-
-    }, []);
     return (
         <div>
 
             <HomeMenuButton screenChanger={screenChanger}/>
             <SnakeHomeButton screenChanger={screenChanger}/>
-            <InputHandler
-                directionChanger={directionChanger}
-                content={
-                    <Board boardContents={boardContents} boardDimensions={gameOptions.boardDimensions}/>
-                }
-            />
+            <Board boardContents={boardContents} boardDimensions={gameOptions.boardDimensions}/>
         </div>
     );
 }
