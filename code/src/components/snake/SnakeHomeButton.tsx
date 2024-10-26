@@ -1,4 +1,16 @@
+/**
+ * Styles
+ */
+
+
+/**
+ * Components
+ */
 import SnakeHomeScreen from "./SnakeHomeScreen.tsx";
+
+/**
+ * Modules
+ */
 import {ReactElement} from "react";
 
 /**

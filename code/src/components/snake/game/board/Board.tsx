@@ -6,8 +6,8 @@ import '../../../../styles/snake/Board.css';
 /**
  * Components
  */
-import BoardSquare from "./BoardSquare";
-import Position from "./Position";
+import BoardSquare from "./BoardSquare.tsx";
+import Position from "./Position.ts";
 
 function getCornerClass(xCoordinate, yCoordinate, boardWidth, boardHeight) {
 
@@ -42,7 +42,7 @@ function GenerateSquares(boardContents, boardWith, boardHeight) {
             squares.push(
                 <BoardSquare
                     content={boardContents?.[`${Position.getStringNotation(x, y)}`]}
-                    className={
+                    classNames={
                         `snake-board-square ${isLightSquare === true ? 'snake-LightSquare' : 'snake-DarkSquare'} ${cornerClass ? cornerClass : ''}`
                     }
                 />

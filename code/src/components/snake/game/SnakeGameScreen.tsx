@@ -1,17 +1,28 @@
-import {useState, useEffect, ReactElement} from "react";
+/**
+ * Styles
+ */
 
-import Board from "./board/Board";
+
+/**
+ * Components
+ */
+import Board from "./board/Board.tsx";
 import HomeMenuButton from "../../common/HomeMenuButton";
 import SnakeHomeButton from "../SnakeHomeButton.tsx";
+
+/**
+ * Modules
+ */
+import {useState, useEffect, ReactElement} from "react";
+import Directions from "../../common/constants/Directions";
+
+/**
+ * Classes
+ */
 import InputHandler from "../../common/utils/InputHandler";
 
-import Directions from "../../common/constants/Directions";
-import Fruit from "./fruits/Fruit";
-import FruitPositionGenerator from "./fruits/FruitPositionGenerator";
-import Position from "./board/Position";
-import Snake from "./snake/Snake";
 
-function SnakeGameScreen({screenChanger, gameOptions}): ReactElement {
+function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
     const [boardContents, setBoardContents] = useState({});
@@ -19,6 +30,7 @@ function SnakeGameScreen({screenChanger, gameOptions}): ReactElement {
     // Start game sequence
     const startGame = (): void => {
         document.onkeydown = new InputHandler(setInputDirection).onKeyDown;
+        console.log(gameSettings)
     };
 
     useEffect(startGame, []);
@@ -26,10 +38,9 @@ function SnakeGameScreen({screenChanger, gameOptions}): ReactElement {
 
     return (
         <div>
-
             <HomeMenuButton screenChanger={screenChanger}/>
             <SnakeHomeButton screenChanger={screenChanger}/>
-            <Board boardContents={boardContents} boardDimensions={gameOptions.boardDimensions}/>
+            <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}/>
         </div>
     );
 }

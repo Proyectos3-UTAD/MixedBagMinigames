@@ -5,10 +5,13 @@
 /**
  * Components
  */
-import HomeMenuButton from "../common/HomeMenuButton";
-import Board from "./game/board/Board";
-import {useState, ReactElement} from "react";
 import SnakeGameScreen from "./game/SnakeGameScreen.tsx";
+import HomeMenuButton from "../common/HomeMenuButton";
+
+/**
+ * Modules
+ */
+import {useState, ReactElement} from "react";
 
 /**
  * Classes
@@ -47,10 +50,10 @@ function SnakeHomeScreen({screenChanger}): ReactElement {
 
     */
 
-    const [gameOptions, setGameOptions] = useState(new GameSettings());
+    const [gameSettings, setGameSettings] = useState(new GameSettings());
 
     const startGame = (): void => {
-        screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameOptions={gameOptions}/>)
+        screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameSettings={gameSettings}/>)
     }
 
     return (

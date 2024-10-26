@@ -1,14 +1,10 @@
 /**
  * Imports
  */
-import BoardDimensions from "./BoardDimensions";
-import FruitValues from "./FruitValues";
-import BoardColors from "./BoardColors";
-import SnakeValues from "./SnakeValues";
-import boardDimensions from "./BoardDimensions";
-import boardColors from "./BoardColors";
-import fruitValues from "./FruitValues";
-import snakeValues from "./SnakeValues";
+import BoardDimensions from "./BoardDimensions.ts";
+import FruitValues from "./FruitValues.ts";
+import BoardColors from "./BoardColors.ts";
+import SnakeValues from "./SnakeValues.ts";
 
 /**
  * Class storing the settings of a game.
@@ -67,6 +63,10 @@ class GameSettings {
      */
     get snakeValues(): SnakeValues {
         return this._snakeValues;
+    }
+
+    public toString(): string {
+        return "GameSettings";
     }
 }
 
