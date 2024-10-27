@@ -8,7 +8,7 @@ import '../../../../styles/snake/Board.css';
  */
 import {ReactElement} from "react";
 
-function BoardSquare({content, classNames}): ReactElement {
+function BoardTile({content, classNames}): ReactElement {
     return (
         <div className={classNames}>
             {content}
@@ -16,4 +16,4 @@ function BoardSquare({content, classNames}): ReactElement {
     );
 }
 
-export default BoardSquare;
+export default BoardTile;

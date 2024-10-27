@@ -9,7 +9,6 @@
 import Board from "./board/Board.tsx";
 import HomeMenuButton from "../../common/HomeMenuButton";
 import SnakeHomeButton from "../SnakeHomeButton.tsx";
-import Fruit from "./fruits/Fruit.tsx";
 
 /**
  * Modules
@@ -27,7 +26,7 @@ import Position from "./board/Position.ts";
 function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
-    const [boardContents, setBoardContents] = useState(null);
+    const [boardContents, setBoardContents] = useState(new Map<string, ReactElement>);
 
     // Generate the board contents map
     const generateBoardContentsMap = () => {
@@ -53,19 +52,19 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
         document.onkeydown = new InputHandler(setInputDirection).onKeyDown;
         generateBoardContentsMap();
-
-        console.log(gameSettings);
-        console.log(boardContents);
-
+        
     };
 
     useEffect(startGame, []);
+    useEffect(() => console.log(boardContents), [boardContents]);
+
 
     return (
         <div>
             <HomeMenuButton screenChanger={screenChanger}/>
             <SnakeHomeButton screenChanger={screenChanger}/>
-            <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}/>
+            <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}
+                   boardColors={gameSettings.boardColors}/>
         </div>
     );
 }

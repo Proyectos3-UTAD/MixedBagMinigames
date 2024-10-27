@@ -6,10 +6,28 @@ import '../../../../styles/snake/Board.css';
 /**
  * Components
  */
-import BoardSquare from "./BoardSquare.tsx";
-import Position from "./Position.ts";
+import BoardTile from "./BoardTile.tsx";
 
-function getCornerClass(xCoordinate, yCoordinate, boardWidth, boardHeight) {
+/**
+ * Modules
+ */
+import {ReactElement} from "react";
+
+/**
+ * Classes
+ */
+import Position from "./Position.ts";
+import BoardColors from "../../settings/BoardColors";
+import boardDimensions from "../../settings/BoardDimensions";
+
+/**
+ * Checks if any given tile is a corner and what class it should be given.
+ * @param xCoordinate The position in the X axis of the tile.
+ * @param yCoordinate The position in the Y axis of the tile.
+ * @param boardWidth The width of the board.
+ * @param boardHeight The height of the board.
+ */
+function getCornerClass(xCoordinate: number, yCoordinate: number, boardWidth: number, boardHeight: number) {
 
     if ((yCoordinate === 0) && (xCoordinate === 0)) {
         return "up-left-snake-board-square";
@@ -23,27 +41,36 @@ function getCornerClass(xCoordinate, yCoordinate, boardWidth, boardHeight) {
     return null;
 }
 
-function GenerateSquares(boardContents, boardWith, boardHeight) {
+/**
+ * Creates the squares of the board with their given content.
+ * @param boardContents The contents of the board.
+ * @param boardDimensions The dimensions of the board.
+ * @param boardColors The colors of the tiles in the board.
+ * @constructor
+ */
+function GenerateSquares(boardContents: Map<string, ReactElement>, boardDimensions: boardDimensions, boardColors: BoardColors) {
 
     const squares = [];
 
     let rowStartsWithLightSquare = true;
     let isLightSquare = true;
+    let keyIndex = 0;
 
 
-    for (let y = 0; y < boardHeight; y++) {
+    for (let y = 0; y < boardDimensions.height; y++) {
 
         isLightSquare = rowStartsWithLightSquare
 
-        for (let x = 0; x < boardWith; x++) {
+        for (let x = 0; x < boardDimensions.width; x++) {
 
-            let cornerClass = getCornerClass(x, y, boardWith, boardHeight);
+            let cornerClass = getCornerClass(x, y, boardDimensions.width, boardDimensions.height);
 
             squares.push(
-                <BoardSquare
+                <BoardTile
+                    key={keyIndex++}
                     content={boardContents.get(new Position(x, y).toString())}
                     classNames={
-                        `snake-board-square ${isLightSquare === true ? 'snake-LightSquare' : 'snake-DarkSquare'} ${cornerClass ? cornerClass : ''}`
+                        `snake-board-square ${isLightSquare === true ? boardColors.lightSquareClass : boardColors.darkSquareClass} ${cornerClass ? cornerClass : ''}`
                     }
                 />
             );
@@ -58,9 +85,17 @@ function GenerateSquares(boardContents, boardWith, boardHeight) {
     return squares;
 }
 
-function Board({boardContents, boardDimensions}) {
+/**
+ * Board component in the snake game
+ * @param boardContents The contents of the board.
+ * @param boardDimensions The dimensions of the board.
+ * @param boardColors The colors of the tiles in the board.
+ * @constructor
+ * @returns An html component with everything in the board.
+ */
+function Board({boardContents, boardDimensions, boardColors}) {
 
-    const boardSquares = GenerateSquares(boardContents, boardDimensions.width, boardDimensions.height);
+    const boardSquares = GenerateSquares(boardContents, boardDimensions, boardColors);
 
     return (
         <div
