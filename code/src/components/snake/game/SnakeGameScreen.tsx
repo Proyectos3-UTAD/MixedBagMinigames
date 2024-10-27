@@ -28,8 +28,18 @@ import Snake from "./snake/Snake.tsx";
 
 function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
-    const [inputDirection, setInputDirection] = useState(Directions.NONE);
-    const [boardContents, setBoardContents] = useState(new Map<string, ReactElement>);
+    const [inputDirection, setInputDirection] = useState(Directions.DOWN);
+    const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>);
+
+    const boardContentsRef = useRef(boardContents);
+    const inputDirectionRef = useRef(inputDirection);
+
+    useEffect(() => {
+
+        boardContentsRef.current = boardContents;
+        inputDirectionRef.current = inputDirection;
+
+    });
 
     const snake = new Snake(new Position(0, 0).toString());
 
@@ -67,7 +77,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     }
 
     // Sets a fruit in the given position
-    const setFruit = (boardContents: Map<string, ReactElement>) => {
+    const setFruit = (boardContents: Map<string, ReactElement | null>) => {
         boardContents.set(FruitPositionGenerator(boardContents), <Fruit/>);
     }
 
@@ -75,10 +85,10 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const startGame = () => {
 
         // Link keystrokes to controls
-        document.onkeydown = new InputHandler(setInputDirection).onKeyDown;
+        document.onkeydown = (new InputHandler(setInputDirection)).onKeyDown;
 
         // Generate initial contents
-        const initialBoardContents: Map<string, ReactElement> = generateBoardContents();
+        const initialBoardContents: Map<string, ReactElement | null> = generateBoardContents();
 
         snake.placeSnake(initialBoardContents);
 
@@ -95,16 +105,16 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     // Normal game actions
     const gameTick = () => {
 
-        const tickBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>(boardContents);
+        const tickBoardContents: Map<string, ReactElement | null> = new Map<string, ReactElement | null>(boardContentsRef.current);
 
         if (snake.growthLeft > 0) {
             setFruit(tickBoardContents)
         }
 
-        snake.moveSnake(inputDirection);
+        snake.moveSnake(inputDirectionRef.current);
 
         if (snake.collided) {
-            alert("game ended");
+            // alert("game ended");
         }
 
         snake.placeSnake(tickBoardContents);
@@ -112,21 +122,23 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
         setBoardContents(tickBoardContents);
 
     }
-    
+
     useEffect(() => {
 
         startGame();
 
-        const ticker = setInterval(gameTick, gameSettings.snakeValues.snakeSpeed);
+        const ticker = setInterval(() => {
+            gameTick();
+        }, gameSettings.snakeValues.snakeSpeed);
 
         return () => clearInterval(ticker);
 
     }, []);
 
     useEffect(() => {
-        console.log(boardContents);
-        if (boardContents.size > 0)
-            FruitPositionGenerator(boardContents);
+
+        console.log("Effect", boardContents);
+
     }, [boardContents]);
 
 

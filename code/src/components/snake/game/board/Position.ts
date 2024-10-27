@@ -45,6 +45,8 @@ class Position {
             case Directions.RIGHT:
                 nextPosition = new Position(this.xCoordinate + 1, this.yCoordinate);
                 break;
+            default:
+                nextPosition = this;
         }
 
         return nextPosition;

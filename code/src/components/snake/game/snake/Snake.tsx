@@ -32,6 +32,7 @@ class Snake {
     private readonly _snakeBody: Array<SnakePartPosition>;
     private _growthLeft: number;
     private _collided: boolean;
+    private _positionToClean: string;
 
     constructor(headPosition: string) {
 
@@ -75,13 +76,30 @@ class Snake {
 
             this.grow(nextPos.toString());
 
+        } else {
+            this.positionToClean = nextPos.toString();
         }
+    }
+
+    get positionToClean(): string {
+        return this._positionToClean;
+    }
+
+    set positionToClean(value: string) {
+        this._positionToClean = value;
     }
 
     placeSnake(boardContents: Map<string, ReactElement>): void {
 
         let isHead = true;
 
+        if (this.positionToClean !== null) {
+
+            boardContents.set(this.positionToClean, null);
+            this.positionToClean = null;
+
+        }
+            
         this._snakeBody.forEach((bodyPart) => {
 
             if (isHead) {
