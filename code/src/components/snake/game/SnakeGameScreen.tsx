@@ -23,6 +23,7 @@ import FruitPositionGenerator from "./fruits/FruitPositionGenerator.ts";
  */
 import InputHandler from "../../common/utils/InputHandler";
 import Position from "./board/Position.ts";
+import Snake from "./snake/Snake.tsx";
 
 
 function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
@@ -30,8 +31,13 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const [inputDirection, setInputDirection] = useState(Directions.NONE);
     const [boardContents, setBoardContents] = useState(new Map<string, ReactElement>);
 
+    const snake = new Snake(new Position(0, 0).toString());
+
+    // Update the board contents
     const updateBoardContents = (key: string, content: ReactElement): void => {
+
         const newBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>(boardContents);
+
         newBoardContents.set(
             key,
             content
@@ -84,7 +90,21 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     };
 
-    useEffect(startGame, []);
+    // Normal game actions
+    const gameTick = () => {
+        console.log("Ticked");
+
+    }
+    useEffect(() => {
+
+        startGame();
+
+        const ticker = setInterval(gameTick, gameSettings.snakeValues.snakeSpeed);
+
+        return () => clearInterval(ticker);
+
+    }, []);
+
     useEffect(() => {
         console.log(boardContents);
         if (boardContents.size > 0)

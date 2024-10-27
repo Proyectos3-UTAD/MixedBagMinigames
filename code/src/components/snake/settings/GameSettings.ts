@@ -27,7 +27,7 @@ class GameSettings {
         boardDimensions: BoardDimensions = new BoardDimensions(9, 10),
         boardColors: BoardColors = new BoardColors("snake-LightSquare", "snake-DarkSquare"),
         fruitValues: FruitValues = new FruitValues(1),
-        snakeValues: SnakeValues = new SnakeValues(1)
+        snakeValues: SnakeValues = new SnakeValues(1000)
     ) {
 
         this._boardDimensions = boardDimensions;

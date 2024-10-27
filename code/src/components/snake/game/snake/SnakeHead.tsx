@@ -1,10 +1,12 @@
 import '../../../../styles/snake/Snake.css'
+import {ReactElement} from "react";
 
-function Snake() {
+function SnakeHead(): ReactElement {
 
     return (
         <div className={"snake-head"}></div>
-    )
+    );
+
 }
 
-export default Snake;
+export default SnakeHead;
