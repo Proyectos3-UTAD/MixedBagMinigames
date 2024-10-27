@@ -5,7 +5,7 @@ import {
   
   const addExplosion = (state, action) => {
     let {top, left} = action.enemy
-      , key = `exposion-${Date.now()}`
+      , key = `explosion-${Date.now()}`
     return {top, left, key, age: 0}
   }
   

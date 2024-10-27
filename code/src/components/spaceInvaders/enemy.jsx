@@ -1,33 +1,20 @@
-import React from 'react'
-import classNames from 'classnames'
+// src/components/spaceInvaders/enemy.jsx
+import React from 'react';
+import PropTypes from 'prop-types'; // Importación correcta de PropTypes
+import classNames from 'classnames'; // Asegúrate de que 'classnames' esté instalado
 
-export const Enemy = props => {
-  let {top, left} = props
-  return <div className={className(props)} style={{top, left}}></div>
-}
+const Enemy = ({ isEnemy }) => {
+    return (
+        <div className={classNames('enemy', { 'enemy--active': isEnemy })}>
+            {/* Contenido del enemigo */}
+            Enemy
+        </div>
+    );
+};
 
-Enemy.defaultProps = {
-  type: 'one'
-, flip: false
-, top: 0
-, left: 0
-}
-
+// Definición de PropTypes para el componente Enemy
 Enemy.propTypes = {
-  flip: React.PropTypes.bool
-, type: React.PropTypes.number
-, top: React.PropTypes.number
-, left: React.PropTypes.number
-}
+    isEnemy: PropTypes.bool.isRequired, // Define que isEnemy es de tipo booleano y es requerido
+};
 
-const flip = value => (value ? 'flip' : '')
-const enemyType = value => (['one', 'two', 'three'][value])
-const className = props => {
-  let {
-    type
-  , flip
-  , selected
-  , didMove
-  , didAdvance} =  props
-  return classNames('sprite', 'enemy', enemyType(type), {flip, selected, didMove, didAdvance})
-}
+export default Enemy;

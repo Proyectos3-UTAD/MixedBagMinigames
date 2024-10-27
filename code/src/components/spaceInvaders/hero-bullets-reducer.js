@@ -11,13 +11,13 @@ import {
   } from './actions'
   
   const width = cellWidth / 16
-      , heigth = cellHeight / 4
-      , top = worldHeight - cellHeight -heigth
+      , height = cellHeight / 4
+      , top = worldHeight - cellHeight -height
       , left = action => action.left + cellWidth / 2 - width / 2
       , key = () => 'bullet-' + Date.now()
-      , maxTop = -heigth
+      , maxTop = -height
       , speed = 14
-      , bullet = () => ({ key: key(), top: top, width: width, heigth: heigth })
+      , bullet = () => ({ key: key(), top: top, width: width, height: height })
   
   const update = (state, action) => {
     let bullet = state[0]

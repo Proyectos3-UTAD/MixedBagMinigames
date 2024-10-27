@@ -1,16 +1,22 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types'; // Asegúrate de que está importado aquí
+import classNames from 'classnames';
 
-export const Hero = props => {
-  let {top, left} = props
-  return <div className="sprite hero" style={{top, left}}></div>
-}
-
-Hero.defaultProps = {
-  top: 0
-, left: 0
-}
+const Hero = ({ x, y }) => {
+    return (
+        <div
+            className={classNames('hero')}
+            style={{
+                left: `${x}px`,
+                top: `${y}px`
+            }}
+        />
+    );
+};
 
 Hero.propTypes = {
-  top: React.PropTypes.number
-, left: React.PropTypes.number
-}
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+};
+
+export default Hero;

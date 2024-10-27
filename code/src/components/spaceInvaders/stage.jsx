@@ -1,8 +1,8 @@
 import React from 'react'
-import { Enemy } from './enemy.jsx'
-import { Hero } from './hero.jsx'
+import Enemy from './enemy.jsx';
+import Hero from './hero.jsx';
 import { Bullet } from './bullet.jsx'
-import { Explosion } from './exposion.jsx'
+import { Explosion } from './explosion.jsx';
 import { worldWidth, worldHeight } from './config'
 
 export const Stage = props => {
@@ -11,15 +11,15 @@ export const Stage = props => {
   return <div className="stage" style={{width: worldWidth, height: worldHeight}}>
 
     {enemiesGrid.enemies.map(d => <Enemy
-      key={ d.key }
-      top={ d.top }
-      left={ d.left }
-      type={ d.type }
-      flip={ d.flip }
-      selected={ d.selected }
-      didMove={ d.didMove }
-      didAdvane={ d.didAdvane }
-      />
+    key={ d.key }
+    top={ d.top }
+    left={ d.left }
+    type={ d.type }
+    flip={ d.flip }
+    selected={ d.selected }
+    didMove={ d.didMove }
+    didAdvance={ d.didAdvance }
+    />
     )}
 
     {hero.map(d => <Hero

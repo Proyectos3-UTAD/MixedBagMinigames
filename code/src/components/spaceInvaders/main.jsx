@@ -1,16 +1,15 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers'; // Archivo donde defines todos los reducers combinados
+import SpaceInvaders from './SpaceInvaders';
 
-export const Hero = props => {
-  let {top, left} = props
-  return <div className="sprite hero" style={{top, left}}></div>
-}
+const store = createStore(rootReducer);
 
-Hero.defaultProps = {
-  top: 0
-, left: 0
-}
-
-Hero.propTypes = {
-  top: React.PropTypes.number
-, left: React.PropTypes.number
-}
+ReactDOM.render(
+    <Provider store={store}>
+        <SpaceInvaders />
+    </Provider>,
+    document.getElementById('root')
+);
