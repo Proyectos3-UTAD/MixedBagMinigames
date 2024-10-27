@@ -80,6 +80,8 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
         // Generate initial contents
         const initialBoardContents: Map<string, ReactElement> = generateBoardContents();
 
+        snake.placeSnake(initialBoardContents);
+
         // Add N fruit to initial contents
         for (let initialFruits: number = 0; initialFruits < gameSettings.fruitValues.fruitAmount; initialFruits++) {
             setFruit(initialBoardContents);
@@ -92,9 +94,25 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     // Normal game actions
     const gameTick = () => {
-        console.log("Ticked");
+
+        const tickBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>(boardContents);
+
+        if (snake.growthLeft > 0) {
+            setFruit(tickBoardContents)
+        }
+
+        snake.moveSnake(inputDirection);
+
+        if (snake.collided) {
+            alert("game ended");
+        }
+
+        snake.placeSnake(tickBoardContents);
+
+        setBoardContents(tickBoardContents);
 
     }
+    
     useEffect(() => {
 
         startGame();

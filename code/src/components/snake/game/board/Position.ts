@@ -25,6 +25,31 @@ class Position {
         return `${this.xCoordinate}-${this.yCoordinate}`;
     }
 
+    public getNextPosition(direction): Position {
+
+        let nextPosition: Position;
+
+        switch (direction) {
+            case Directions.DOWN:
+                nextPosition = new Position(this.xCoordinate, this.yCoordinate + 1);
+                break;
+
+            case Directions.UP:
+                nextPosition = new Position(this.xCoordinate, this.yCoordinate - 1);
+                break;
+
+            case Directions.LEFT:
+                nextPosition = new Position(this.xCoordinate - 1, this.yCoordinate);
+                break;
+
+            case Directions.RIGHT:
+                nextPosition = new Position(this.xCoordinate + 1, this.yCoordinate);
+                break;
+        }
+
+        return nextPosition;
+    }
+
     static parsePositionFromString(stringPosition: string): Position {
         const [x, y] = stringPosition.split('-').map(text => Number(text));
         return new Position(x, y);
