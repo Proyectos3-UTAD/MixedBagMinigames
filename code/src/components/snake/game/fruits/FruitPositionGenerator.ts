@@ -1,26 +1,27 @@
-import Position from "../board/Position";
+/**
+ * Modules
+ */
+import {ReactElement} from "react";
+
 
 /**
  * Generates a position for the fruit.
  * @param boardContents The contents of the board (to avoid overlap)
- * @param boardDimensions The dimensions of the board (to make sure the fruit is in boar bounds)
- * @returns {*}
+ * @returns A position in which a fruit can be spawned freely
  * @constructor
  */
-function FruitPositionGenerator(boardContents: {}, boardDimensions): Position {
+function FruitPositionGenerator(boardContents: Map<string, ReactElement>): string {
 
     const availablePositions = [];
 
-    for (let y = 0; y < boardDimensions.height; y++) {
-        for (let x = 0; x < boardDimensions.width; x++) {
-            let positionName = Position.getStringNotation(x, y);
-            if (!(boardContents?.[`${positionName}`])) {
-                availablePositions.push([`${positionName}`]);
-            }
-        }
-    }
 
-    return availablePositions[(Math.floor(Math.random() * availablePositions.length))][0];
+    boardContents.forEach((tileContents, key) => {
+        if (tileContents === null) {
+            availablePositions.push(key);
+        }
+    })
+
+    return availablePositions[(Math.floor(Math.random() * availablePositions.length))];
 
 }
 
