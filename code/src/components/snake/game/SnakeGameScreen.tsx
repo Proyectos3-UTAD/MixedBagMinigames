@@ -31,7 +31,7 @@ import Snake from "./snake/Snake.tsx";
 function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     const [inputDirection, setInputDirection] = useState(Directions.DOWN);
-    const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>);
+    const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
 
     const boardContentsRef = useRef(boardContents);
     const inputDirectionRef = useRef(inputDirection);
@@ -43,26 +43,43 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     });
 
+    // Create the snake
     const snake = new Snake(new Position(0, 0).toString());
 
-    // Update the board contents
-    const updateBoardContents = (key: string, content: ReactElement): void => {
+    // Change the snake direction
+    const changeDirection = (newDirection) => {
 
-        const newBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>(boardContents);
+        switch (newDirection) {
+            case Directions.DOWN:
 
-        newBoardContents.set(
-            key,
-            content
-        );
+                if (inputDirectionRef.current !== Directions.UP) setInputDirection(newDirection);
 
-        setBoardContents(newBoardContents);
+                break;
 
+            case Directions.UP:
+
+                if (inputDirectionRef.current !== Directions.DOWN) setInputDirection(newDirection);
+
+                break;
+
+            case Directions.LEFT:
+
+                if (inputDirectionRef.current !== Directions.RIGHT) setInputDirection(newDirection);
+
+                break;
+
+            case Directions.RIGHT:
+
+                if (inputDirectionRef.current !== Directions.LEFT) setInputDirection(newDirection);
+
+                break;
+        }
     }
 
     // Generate the board contents map
     const generateBoardContents = () => {
 
-        const newBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>;
+        const newBoardContents: Map<string, ReactElement> = new Map<string, ReactElement>();
 
         for (let j: number = 0; j < gameSettings.boardDimensions.height; j++) {
 
@@ -87,7 +104,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const startGame = () => {
 
         // Link keystrokes to controls
-        document.onkeydown = (new InputHandler(setInputDirection)).onKeyDown;
+        document.onkeydown = (new InputHandler(changeDirection)).onKeyDown;
 
         // Generate initial contents
         const initialBoardContents: Map<string, ReactElement | null> = generateBoardContents();
@@ -125,6 +142,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     }
 
+    // Start game on component load
     useEffect(() => {
 
         startGame();
@@ -136,13 +154,6 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
         return () => clearInterval(ticker);
 
     }, []);
-
-    // useEffect(() => {
-    //
-    //     console.log("Effect", boardContents);
-    //
-    // }, [boardContents]);
-
 
     return (
         <div>
