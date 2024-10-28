@@ -107,14 +107,17 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
         const tickBoardContents: Map<string, ReactElement | null> = new Map<string, ReactElement | null>(boardContentsRef.current);
 
-        if (snake.growthLeft > 0) {
-            setFruit(tickBoardContents)
-        }
 
         snake.moveSnake(inputDirectionRef.current);
 
+        if (snake.growthLeft > 0) {
+            setFruit(tickBoardContents)
+            console.log("Fruit spammed!")
+        }
+
         if (snake.collided) {
-            // alert("game ended");
+            console.log("game ended");
+            snake.collided = false;
         }
 
         snake.placeSnake(tickBoardContents);
@@ -135,11 +138,11 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     }, []);
 
-    useEffect(() => {
-
-        console.log("Effect", boardContents);
-
-    }, [boardContents]);
+    // useEffect(() => {
+    //
+    //     console.log("Effect", boardContents);
+    //
+    // }, [boardContents]);
 
 
     return (

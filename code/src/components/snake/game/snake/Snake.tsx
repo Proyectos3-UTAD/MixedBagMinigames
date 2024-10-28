@@ -56,6 +56,8 @@ class Snake {
 
     grow(bodyPartPosition: string): void {
         this._snakeBody.push(new SnakePartPosition(<SnakeBody/>, bodyPartPosition));
+        this._growthLeft--;
+        console.log("Ate!!")
     }
 
     moveSnake(inputDirection) {
@@ -99,7 +101,7 @@ class Snake {
             this.positionToClean = null;
 
         }
-            
+
         this._snakeBody.forEach((bodyPart) => {
 
             if (isHead) {
@@ -108,11 +110,11 @@ class Snake {
 
                     const tileContents = boardContents.get(bodyPart.position);
 
-                    if (tileContents === <Fruit/>) {
+                    if (tileContents?.type === Fruit) {
 
                         this.addGrowth();
 
-                    } else {
+                    } else if (tileContents) {
 
                         this.collided = true;
 
