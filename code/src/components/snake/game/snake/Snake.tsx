@@ -57,7 +57,6 @@ class Snake {
     grow(bodyPartPosition: string): void {
         this._snakeBody.push(new SnakePartPosition(<SnakeBody/>, bodyPartPosition));
         this._growthLeft--;
-        console.log("Ate!!")
     }
 
     moveSnake(inputDirection) {
