@@ -17,6 +17,18 @@ function BuscaMinas({screenChanger}) {
         }
         return newGrid;
     };
+    // Función para colocar las minas aleatoriamente
+    const placeMines = (grid) => {
+        let minesPlaced = 0;
+        while (minesPlaced < totalMines) {
+        let row = Math.floor(Math.random() * rows);
+        let col = Math.floor(Math.random() * cols);
+        if (!grid[row][col].mine) {
+            grid[row][col].mine = true;
+            minesPlaced++;
+        }
+        }
+    };
     return (
         <div>
             <h1>BuscaMinas</h1>
