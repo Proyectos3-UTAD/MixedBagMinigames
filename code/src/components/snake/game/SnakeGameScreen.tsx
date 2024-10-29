@@ -1,7 +1,7 @@
 /**
  * Styles
  */
-
+import '../../../styles/snake/GameScreen.css'
 
 /**
  * Components
@@ -32,19 +32,27 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
     const [inputDirection, setInputDirection] = useState(Directions.DOWN);
     const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
+    const [score, setScore] = useState(0);
 
     const boardContentsRef = useRef(boardContents);
     const inputDirectionRef = useRef(inputDirection);
+    const scoreRef = useRef(score);
 
     useEffect(() => {
 
         boardContentsRef.current = boardContents;
         inputDirectionRef.current = inputDirection;
+        scoreRef.current = score;
 
     });
 
     // Create the snake
     const snake = new Snake(new Position(0, 0).toString());
+
+    // Scores a point
+    const scorePoint = () => {
+        setScore(scoreRef.current + 1);
+    }
 
     // Change the snake direction
     const changeDirection = (newDirection) => {
@@ -128,12 +136,13 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
 
         if (snake.growthLeft > 0) {
             setFruit(tickBoardContents);
+            scorePoint();
         }
 
         snake.moveSnake(inputDirectionRef.current);
 
         if (snake.collided) {
-            screenChanger(<SnakeHomeScreen screenChanger={screenChanger}/>);
+            // screenChanger(<SnakeHomeScreen screenChanger={screenChanger}/>);
         }
 
         snake.placeSnake(tickBoardContents);
@@ -156,11 +165,18 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     }, []);
 
     return (
-        <div>
-            <HomeMenuButton screenChanger={screenChanger}/>
+        <div className={"snake-game-screen"}>
             <SnakeHomeButton screenChanger={screenChanger}/>
-            <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}
-                   boardColors={gameSettings.boardColors}/>
+            <div className={"snake-game-display"}>
+                <div className={"snake-game-summary"}>
+                    <text className={"snake-score-display"}>Score: {scoreRef.current}</text>
+                    <text className={"snake-time-display"}>Time: {scoreRef.current}</text>
+                </div>
+                <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}
+                       boardColors={gameSettings.boardColors}/>
+            </div>
+            <HomeMenuButton screenChanger={screenChanger}/>
+
         </div>
     );
 }

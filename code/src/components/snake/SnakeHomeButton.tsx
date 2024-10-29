@@ -27,7 +27,7 @@ function SnakeHomeButton({screenChanger}): ReactElement {
 
     return (
         <button onClick={returnHome}>
-            Snake
+            Back
         </button>
     );
 }

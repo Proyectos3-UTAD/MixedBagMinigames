@@ -1,0 +1,21 @@
+.snake-game-screen {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.snake-game-display {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    background-color: #398a30;
+    border-radius: 15px;
+    margin: 10% auto;
+
+
+}
+
+.snake-game-summary {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

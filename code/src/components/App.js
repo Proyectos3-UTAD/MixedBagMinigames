@@ -12,7 +12,7 @@ function App() {
     }
 
     useEffect(() => {
-        setScreen(<SnakeHomeScreen screenChanger={screenChanger}/>);
+        setScreen(<Menu screenChanger={screenChanger}/>);
     }, []);
 
     return (
