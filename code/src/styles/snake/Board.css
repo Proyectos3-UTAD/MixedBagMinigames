@@ -3,7 +3,6 @@
     width: 80vh;
     height: 80vh;
     margin: 0 auto;
-    border: 10px solid #398a30;
     border-radius: 15px; /* Add this line for rounded corners */
 }
 
