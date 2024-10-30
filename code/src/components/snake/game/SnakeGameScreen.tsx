@@ -10,6 +10,7 @@ import Board from "./board/Board.tsx";
 import HomeMenuButton from "../../common/HomeMenuButton";
 import SnakeHomeButton from "../SnakeHomeButton.tsx";
 import Fruit from "./fruits/Fruit.tsx";
+import SnakeHomeScreen from "../SnakeHomeScreen.tsx";
 
 /**
  * Modules
@@ -142,7 +143,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
         snake.moveSnake(inputDirectionRef.current);
 
         if (snake.collided) {
-            // screenChanger(<SnakeHomeScreen screenChanger={screenChanger}/>);
+            screenChanger(<SnakeHomeScreen screenChanger={screenChanger}/>);
         }
 
         snake.placeSnake(tickBoardContents);
