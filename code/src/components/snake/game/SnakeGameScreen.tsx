@@ -10,8 +10,6 @@ import Board from "./board/Board.tsx";
 import HomeMenuButton from "../../common/HomeMenuButton";
 import SnakeHomeButton from "../SnakeHomeButton.tsx";
 import Fruit from "./fruits/Fruit.tsx";
-import SnakeHomeScreen from "../SnakeHomeScreen.tsx";
-
 
 /**
  * Modules
@@ -26,6 +24,7 @@ import FruitPositionGenerator from "./fruits/FruitPositionGenerator.ts";
 import InputHandler from "../../common/utils/InputHandler";
 import Position from "./board/Position.ts";
 import Snake from "./snake/Snake.tsx";
+import Timer from "../../common/Timer";
 
 
 function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
@@ -33,6 +32,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const [inputDirection, setInputDirection] = useState(Directions.DOWN);
     const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
     const [score, setScore] = useState(0);
+    const [startTime, setStartTime] = useState(new Date().getTime());
 
     const boardContentsRef = useRef(boardContents);
     const inputDirectionRef = useRef(inputDirection);
@@ -170,7 +170,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
             <div className={"snake-game-display"}>
                 <div className={"snake-game-summary"}>
                     <text className={"snake-score-display"}>Score: {scoreRef.current}</text>
-                    <text className={"snake-time-display"}>Time: {scoreRef.current}</text>
+                    <Timer className={"snake-time-display"} startDate={startTime}/>
                 </div>
                 <Board boardContents={boardContents} boardDimensions={gameSettings.boardDimensions}
                        boardColors={gameSettings.boardColors}/>
