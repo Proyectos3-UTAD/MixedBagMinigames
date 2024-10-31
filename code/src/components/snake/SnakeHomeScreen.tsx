@@ -50,15 +50,15 @@ function SnakeHomeScreen({screenChanger}): ReactElement {
 
     */
 
-    const [gameSettings, setGameSettings] = useState(new GameSettings());
+    const [gameSettings, ] = useState(new GameSettings());
 
     const startGame = (): void => {
         screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameSettings={gameSettings}/>)
     }
 
+
     return (
         <div>
-            {/*<SnakeImported/>*/}
             <h1>Snake</h1>
             <button
                 onClick={startGame}>Play
