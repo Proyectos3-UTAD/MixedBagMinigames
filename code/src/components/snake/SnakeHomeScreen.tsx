@@ -63,6 +63,7 @@ function SnakeHomeScreen({screenChanger}): ReactElement {
             <button
                 onClick={startGame}>Play
             </button>
+            <HomeMenuButton screenChanger={screenChanger}/>
             <p>Mode</p>
             <p>Scores</p>
         </div>
