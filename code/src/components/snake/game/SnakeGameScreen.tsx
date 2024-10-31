@@ -33,7 +33,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const [inputDirection, setInputDirection] = useState(Directions.DOWN);
     const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
     const [score, setScore] = useState(0);
-    const [startTime, setStartTime] = useState(new Date().getTime());
+    const [startTime, ] = useState(new Date().getTime());
 
     const boardContentsRef = useRef(boardContents);
     const inputDirectionRef = useRef(inputDirection);
