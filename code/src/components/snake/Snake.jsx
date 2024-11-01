@@ -9,5 +9,6 @@ function Snake({screenChanger}) {
             
         </div>
     );
+}
 
 export default Snake;
