@@ -11,6 +11,7 @@ import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
 import SpaceInvaders from "../spaceInvaders/SpaceInvaders";
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";
+import BuscaMinas from"../buscaMinas/buscaMinas";
 
 function Menu({screenChanger}) {
     return (
@@ -34,7 +35,7 @@ function Menu({screenChanger}) {
 
                     screenChanger={screenChanger}
                     gameComponent={
-                        <SnakeHomeScreen screenChanger={screenChanger}/>
+                        <BuscaMinas screenChanger={screenChanger}/>
                     }/>
 
                 <GameMiniature
