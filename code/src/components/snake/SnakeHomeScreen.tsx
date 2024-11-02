@@ -18,7 +18,6 @@ import {useState, ReactElement} from "react";
  */
 import GameSettings from "./settings/GameSettings.ts";
 
-// import SnakeImported from "./import/SnakeImported";
 /**
  * Home screen of the snake minigame.
  * @param screenChanger The state setter to change the screen contents.
@@ -26,29 +25,6 @@ import GameSettings from "./settings/GameSettings.ts";
  * @constructor
  */
 function SnakeHomeScreen({screenChanger}): ReactElement {
-
-    /*Partes del juego de la serpiente:
-
-       - Moverse
-            - Detectar teclas (Done)
-            - Obtener dirección de movimiento
-            - Actualizar posición de la serpiente
-            - Pintar por pantalla (Done)
-
-       - Colisionar
-            - Detectar con que
-                - Pared o cuerpo
-                    - Morir
-                - Fruta
-                    - Comer
-                    - Pintar nueva fruta (Done)
-       - Comer
-            - Generar nuevo bloque de serpiente
-            - Situarlo en la parte posterior de la cola cuando avance
-            - Actualizar marcador
-
-
-    */
 
     const [gameSettings, ] = useState(new GameSettings());
 
