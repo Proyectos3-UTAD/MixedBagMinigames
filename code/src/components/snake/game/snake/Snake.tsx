@@ -26,7 +26,9 @@ class SnakePartPosition {
         return this._snakePart
     }
 }
-
+/**
+ * Snake class.
+ */
 class Snake {
 
     private readonly _snakeBody: Array<SnakePartPosition>;
