@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HomeMenuButton from "../common/HomeMenuButton";
+import '../../styles/buscaMinas/buscaMinas.css'; // Importa el archivo CSS
 
 
 function BuscaMinas({ screenChanger }) {
@@ -130,22 +131,26 @@ function BuscaMinas({ screenChanger }) {
       setGrid(newGrid);
     };
     return (
-        <div>
+        <><div>
             <h1>BuscaMinas</h1>
-            <div className="grid-container">
+            <div className="grid-container"
+            style={{
+              gridTemplateColumns: `repeat(${cols}, 1fr)`,
+              gridTemplateRows: `repeat(${rows}, 1fr)`
+          }}>
                 {grid.map((row, rowIndex) => (
-                    <div key={rowIndex} className="row">
-                        {row.map((cell, colIndex) => (
+                        row.map((cell, colIndex) => (
                             <button key={colIndex} className={`cell ${cell.revealed ? "revealed" : ""}`} onClick={() => handleCellClick(rowIndex, colIndex)}>
-                                {cell.revealed && (cell.mine ? "💣" : cell.adjacentMines > 0 ? cell.adjacentMines : "")}
+                                {cell.revealed && (cell.mine ? "💣" : cell.adjacentMines > 0 ? cell.adjacentMines : "0")}
                             </button>
-                        ))}
-                    </div>
+                        ))
                 ))}
             </div>
-            <button onClick={resetGame}>Reiniciar</button>
-            <HomeMenuButton screenChanger={screenChanger} />
-        </div>
+            
+       </div><div>
+                <button onClick={resetGame}>Reiniciar</button>
+                <HomeMenuButton screenChanger={screenChanger} />
+            </div></>
     );
 }
 
