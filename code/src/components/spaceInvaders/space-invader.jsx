@@ -5,6 +5,7 @@ import bullet from './assets/bullet.png';
 import enemy from './assets/enemy.png';
 import player from './assets/player.png';
 import ufo from './assets/ufo.png';
+import HomeMenuButton from '../common/HomeMenuButton';
 
 // Función para inicializar el juego
 const initializeGame = (context, setIsGameRunning) => {
@@ -90,7 +91,7 @@ const SpaceInvaders = ({ screenChanger }) => {
       <canvas ref={canvasRef} width="800" height="600" className="game-canvas" />
       <div className="controls">
         <button onClick={handleRestart}>Restart</button>
-        <button onClick={() => screenChanger(null)}>Exit</button>
+        <HomeMenuButton screenChanger={screenChanger}/>
       </div>
     </div>
   );
