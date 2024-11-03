@@ -1,0 +1,40 @@
+.snake-Board {
+    display: grid;
+    width: 80vh;
+    height: 80vh;
+    margin: 0 auto;
+    border-radius: 15px; /* Add this line for rounded corners */
+}
+
+.snake-board-square {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.snake-LightSquare {
+    background-color: #8eaa63;
+}
+
+.snake-DarkSquare {
+    background-color: #7e9859;
+}
+
+.up-left-snake-board-square {
+    border-radius: 4px 0 0 0;
+}
+
+.down-left-snake-board-square {
+    border-radius: 0 0 0 4px;
+}
+
+.up-right-snake-board-square {
+    border-radius: 0 4px 0 0;
+}
+
+.down-right-snake-board-square {
+    border-radius: 0 0 4px 0;
+}
