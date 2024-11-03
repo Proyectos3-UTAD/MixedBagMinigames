@@ -1,0 +1,41 @@
+/* src/styles/pacMan/pacMan.css */
+.pacman-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.game-area {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: black;
+    border: 2px solid #fff;
+    margin: 20px auto;
+}
+
+.pacman {
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.1s ease;
+}
+
+.enemy {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.point {
+    width: 10px;
+    height: 10px;
+    background-color: #00FF00;
+    border-radius: 50%;
+    position: absolute;
+}
