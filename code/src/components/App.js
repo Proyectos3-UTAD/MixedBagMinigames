@@ -1,21 +1,24 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Home from "./Home";
-import SpaceInvaders from "./SpaceInvaders";
+import '../styles/App.css';
+import {useState, useEffect} from "react";
+import Menu from "./menu/Menu";
 
-const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/game">
-          <SpaceInvaders />
-        </Route>
-      </Switch>
-    </Router>
-  );
-};
+function App() {
+
+    const [screen, setScreen] = useState(<p>Loading</p>);
+
+    const screenChanger = (newScreen) => {
+        setScreen(newScreen);
+    }
+
+    useEffect(() => {
+        setScreen(<Menu screenChanger={screenChanger}/>);
+    }, []);
+
+    return (
+        <div id="App">
+            {screen}
+        </div>
+    );
+}
 
 export default App;

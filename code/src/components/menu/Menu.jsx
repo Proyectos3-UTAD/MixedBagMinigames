@@ -8,7 +8,7 @@ import '../../styles/menu/Menu.css';
  */
 import GameMiniature from "./GameMiniature";
 import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
-import SpaceInvaders from "../spaceInvaders/space-invader.jsx";
+import SpaceInvaders from './space-invader';
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";
 import PacMan from '../pacMan/pacMan';

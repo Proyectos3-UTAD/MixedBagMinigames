@@ -6,7 +6,6 @@ import {
   GAME_SPEED,
   BULLET_SPEED,
   ENEMY_SPEED,
-  UFO_SPEED,
   PLAYER_SPEED,
   CANVAS_WIDTH,
   CANVAS_HEIGHT
@@ -21,72 +20,84 @@ import backgroundImg from './assets/background.png';
 const SpaceInvaders = () => {
   const [player, setPlayer] = useState({ ...START_POSITION });
   const [bullets, setBullets] = useState([]);
-  const [enemies, setEnemies] = useState(START_ENEMIES_POSITION);
+  const [enemies, setEnemies] = useState([...START_ENEMIES_POSITION]);
   const [score, setScore] = useState(0);
+  const [enemyDirection, setEnemyDirection] = useState(1);
 
+  // Movimiento del jugador
   const movePlayer = useCallback((direction) => {
     setPlayer((prev) => ({
-      x: Math.min(
-        Math.max(0, prev.x + direction * PLAYER_SPEED),
-        CANVAS_WIDTH
-      ),
-      y: prev.y,
+      ...prev,
+      x: Math.max(0, Math.min(CANVAS_WIDTH - 40, prev.x + direction * PLAYER_SPEED))
     }));
   }, []);
 
+  // Disparo del jugador
   const fireBullet = () => {
-    setBullets((prev) => [
-      ...prev,
-      { x: player.x + 15, y: player.y - 10 }
+    setBullets((prevBullets) => [
+      ...prevBullets,
+      { x: player.x + 15, y: player.y - 20 }
     ]);
   };
 
+  // Movimiento de los proyectiles
   const moveBullets = () => {
-    setBullets((prev) =>
-      prev
+    setBullets((prevBullets) =>
+      prevBullets
         .map((bullet) => ({ ...bullet, y: bullet.y - BULLET_SPEED }))
-        .filter((bullet) => bullet.y > 0)
+        .filter((bullet) => bullet.y > 0) // Remueve los proyectiles fuera de la pantalla
     );
   };
 
+  // Movimiento de los enemigos
   const moveEnemies = () => {
-    setEnemies((prev) =>
-      prev.map((enemy) => ({
-        x: enemy.x,
-        y: enemy.y + ENEMY_SPEED
-      }))
-    );
+    setEnemies((prevEnemies) => {
+      const reachedEdge = prevEnemies.some(
+        (enemy) => enemy.x + enemyDirection * ENEMY_SPEED < 0 || enemy.x + enemyDirection * ENEMY_SPEED > CANVAS_WIDTH - 40
+      );
+      const newDirection = reachedEdge ? -enemyDirection : enemyDirection;
+
+      if (reachedEdge) {
+        setEnemyDirection(newDirection);
+        return prevEnemies.map((enemy) => ({ ...enemy, y: enemy.y + 40 }));
+      } else {
+        return prevEnemies.map((enemy) => ({
+          ...enemy,
+          x: enemy.x + enemyDirection * ENEMY_SPEED
+        }));
+      }
+    });
   };
 
+  // Verificar colisiones entre proyectiles y enemigos
   const checkCollisions = () => {
+    setEnemies((prevEnemies) =>
+      prevEnemies.filter((enemy) => {
+        const hit = bullets.some(
+          (bullet) =>
+            bullet.x > enemy.x &&
+            bullet.x < enemy.x + 40 &&
+            bullet.y > enemy.y &&
+            bullet.y < enemy.y + 40
+        );
+        if (hit) setScore((prevScore) => prevScore + 10);
+        return !hit;
+      })
+    );
     setBullets((prevBullets) =>
       prevBullets.filter((bullet) => {
-        const hit = enemies.some(
+        return !enemies.some(
           (enemy) =>
             bullet.x > enemy.x &&
             bullet.x < enemy.x + 40 &&
             bullet.y > enemy.y &&
             bullet.y < enemy.y + 40
         );
-        if (hit) setScore((prev) => prev + 10);
-        return !hit;
       })
-    );
-
-    setEnemies((prevEnemies) =>
-      prevEnemies.filter(
-        (enemy) =>
-          !bullets.some(
-            (bullet) =>
-              bullet.x > enemy.x &&
-              bullet.x < enemy.x + 40 &&
-              bullet.y > enemy.y &&
-              bullet.y < enemy.y + 40
-          )
-      )
     );
   };
 
+  // Capturar eventos de teclado
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowLeft') movePlayer(-1);
     if (e.key === 'ArrowRight') movePlayer(1);
@@ -98,6 +109,7 @@ const SpaceInvaders = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  // Bucle principal del juego
   useInterval(() => {
     moveBullets();
     moveEnemies();
@@ -106,6 +118,7 @@ const SpaceInvaders = () => {
 
   return (
     <div style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, backgroundImage: `url(${backgroundImg})`, position: 'relative', overflow: 'hidden' }}>
+      {/* Jugador */}
       <div
         style={{
           position: 'absolute',
@@ -114,11 +127,14 @@ const SpaceInvaders = () => {
           width: 40,
           height: 40,
           backgroundImage: `url(${playerImg})`,
+          backgroundSize: 'cover'
         }}
       />
-      {bullets.map((bullet, i) => (
+
+      {/* Proyectiles */}
+      {bullets.map((bullet, index) => (
         <div
-          key={i}
+          key={index}
           style={{
             position: 'absolute',
             left: bullet.x,
@@ -126,23 +142,29 @@ const SpaceInvaders = () => {
             width: 10,
             height: 20,
             backgroundImage: `url(${bulletImg})`,
+            backgroundSize: 'cover'
           }}
         />
       ))}
-      {enemies.map((enemy, i) => (
+
+      {/* Enemigos */}
+      {enemies.map((enemy, index) => (
         <div
-          key={i}
+          key={index}
           style={{
             position: 'absolute',
             left: enemy.x,
-            bottom: enemy.y,
+            top: enemy.y,
             width: 40,
             height: 40,
             backgroundImage: `url(${enemyImg})`,
+            backgroundSize: 'cover'
           }}
         />
       ))}
-      <div style={{ position: 'absolute', top: 10, left: 10, color: 'white' }}>Score: {score}</div>
+
+      {/* Marcador */}
+      <div style={{ position: 'absolute', top: 10, left: 10, color: 'white', fontSize: '24px' }}>Puntuación: {score}</div>
     </div>
   );
 };
