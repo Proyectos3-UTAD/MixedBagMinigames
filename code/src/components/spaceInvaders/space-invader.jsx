@@ -1,98 +1,148 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './style.scss';
-import background from './assets/background.png';
-import bullet from './assets/bullet.png';
-import enemy from './assets/enemy.png';
-import player from './assets/player.png';
-import ufo from './assets/ufo.png';
-import HomeMenuButton from '../common/HomeMenuButton';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useInterval } from './useInterval';
+import {
+  START_POSITION,
+  START_ENEMIES_POSITION,
+  GAME_SPEED,
+  BULLET_SPEED,
+  ENEMY_SPEED,
+  UFO_SPEED,
+  PLAYER_SPEED,
+  CANVAS_WIDTH,
+  CANVAS_HEIGHT
+} from './constants';
 
-// Función para inicializar el juego
-const initializeGame = (context, setIsGameRunning) => {
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-  context.fillStyle = '#000';
-  context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+import playerImg from './assets/player.png';
+import bulletImg from './assets/bullet.png';
+import enemyImg from './assets/enemy.png';
+import ufoImg from './assets/ufo.png';
+import backgroundImg from './assets/background.png';
 
-  const playerImage = new Image();
-  playerImage.src = player;
-  playerImage.onload = () => {
-    context.drawImage(playerImage, context.canvas.width / 2 - 15, context.canvas.height - 30, 30, 30);
+const SpaceInvaders = () => {
+  const [player, setPlayer] = useState({ ...START_POSITION });
+  const [bullets, setBullets] = useState([]);
+  const [enemies, setEnemies] = useState(START_ENEMIES_POSITION);
+  const [score, setScore] = useState(0);
+
+  const movePlayer = useCallback((direction) => {
+    setPlayer((prev) => ({
+      x: Math.min(
+        Math.max(0, prev.x + direction * PLAYER_SPEED),
+        CANVAS_WIDTH
+      ),
+      y: prev.y,
+    }));
+  }, []);
+
+  const fireBullet = () => {
+    setBullets((prev) => [
+      ...prev,
+      { x: player.x + 15, y: player.y - 10 }
+    ]);
   };
-  setIsGameRunning(true);
-};
 
-// Función del loop del juego
-const gameLoop = (context, playerPosition) => {
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-  context.fillStyle = '#FFF';
-  context.fillRect(50, 50, 100, 100);
-
-  const playerImage = new Image();
-  playerImage.src = player;
-  playerImage.onload = () => {
-    context.drawImage(playerImage, playerPosition.x, playerPosition.y, 30, 30);
+  const moveBullets = () => {
+    setBullets((prev) =>
+      prev
+        .map((bullet) => ({ ...bullet, y: bullet.y - BULLET_SPEED }))
+        .filter((bullet) => bullet.y > 0)
+    );
   };
-};
 
-// Manejo de eventos de teclado
-const handleKeyDown = (event, setPlayerPosition) => {
-  if (event.key === 'ArrowLeft') {
-    setPlayerPosition(prev => ({ ...prev, x: prev.x - 10 }));
-  } else if (event.key === 'ArrowRight') {
-    setPlayerPosition(prev => ({ ...prev, x: prev.x + 10 }));
-  }
-};
+  const moveEnemies = () => {
+    setEnemies((prev) =>
+      prev.map((enemy) => ({
+        x: enemy.x,
+        y: enemy.y + ENEMY_SPEED
+      }))
+    );
+  };
 
-const handleKeyUp = (event) => {
-  console.log('Key up:', event.key);
-};
+  const checkCollisions = () => {
+    setBullets((prevBullets) =>
+      prevBullets.filter((bullet) => {
+        const hit = enemies.some(
+          (enemy) =>
+            bullet.x > enemy.x &&
+            bullet.x < enemy.x + 40 &&
+            bullet.y > enemy.y &&
+            bullet.y < enemy.y + 40
+        );
+        if (hit) setScore((prev) => prev + 10);
+        return !hit;
+      })
+    );
 
-const SpaceInvaders = ({ screenChanger }) => {
-  const canvasRef = useRef(null);
-  const [isGameRunning, setIsGameRunning] = useState(true);
-  const [playerPosition, setPlayerPosition] = useState({ x: 400, y: 550 });
+    setEnemies((prevEnemies) =>
+      prevEnemies.filter(
+        (enemy) =>
+          !bullets.some(
+            (bullet) =>
+              bullet.x > enemy.x &&
+              bullet.x < enemy.x + 40 &&
+              bullet.y > enemy.y &&
+              bullet.y < enemy.y + 40
+          )
+      )
+    );
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') movePlayer(-1);
+    if (e.key === 'ArrowRight') movePlayer(1);
+    if (e.key === ' ') fireBullet();
+  };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
-    initializeGame(context, setIsGameRunning);
-
-    const gameInterval = setInterval(() => {
-      if (isGameRunning) {
-        gameLoop(context, playerPosition);
-      }
-    }, 1000 / 60);
-
-    const handleKeyDownEvent = (event) => handleKeyDown(event, setPlayerPosition);
-    const handleKeyUpEvent = (event) => handleKeyUp(event);
-
-    window.addEventListener('keydown', handleKeyDownEvent);
-    window.addEventListener('keyup', handleKeyUpEvent);
-
-    return () => {
-      clearInterval(gameInterval);
-      window.removeEventListener('keydown', handleKeyDownEvent);
-      window.removeEventListener('keyup', handleKeyUpEvent);
-    };
-  }, [isGameRunning, playerPosition]);
-
-  const handleRestart = () => {
-    setIsGameRunning(false);
-    setTimeout(() => {
-      initializeGame(canvasRef.current.getContext('2d'), setIsGameRunning);
-      setPlayerPosition({ x: 400, y: 550 });
-      setIsGameRunning(true);
-    }, 100);
-  };
+  useInterval(() => {
+    moveBullets();
+    moveEnemies();
+    checkCollisions();
+  }, GAME_SPEED);
 
   return (
-    <div className="space-invaders-container">
-      <canvas ref={canvasRef} width="800" height="600" className="game-canvas" />
-      <div className="controls">
-        <button onClick={handleRestart}>Restart</button>
-        <HomeMenuButton screenChanger={screenChanger}/>
-      </div>
+    <div style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, backgroundImage: `url(${backgroundImg})`, position: 'relative', overflow: 'hidden' }}>
+      <div
+        style={{
+          position: 'absolute',
+          left: player.x,
+          bottom: player.y,
+          width: 40,
+          height: 40,
+          backgroundImage: `url(${playerImg})`,
+        }}
+      />
+      {bullets.map((bullet, i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: bullet.x,
+            bottom: bullet.y,
+            width: 10,
+            height: 20,
+            backgroundImage: `url(${bulletImg})`,
+          }}
+        />
+      ))}
+      {enemies.map((enemy, i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: enemy.x,
+            bottom: enemy.y,
+            width: 40,
+            height: 40,
+            backgroundImage: `url(${enemyImg})`,
+          }}
+        />
+      ))}
+      <div style={{ position: 'absolute', top: 10, left: 10, color: 'white' }}>Score: {score}</div>
     </div>
   );
 };
