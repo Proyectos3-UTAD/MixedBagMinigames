@@ -1,0 +1,41 @@
+.snake-game-screen {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 1rem;
+}
+
+.snake-game-display {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    background-color: #398a30;
+    border-radius: 15px;
+    margin: 5% auto;
+
+
+}
+
+.snake-game-summary {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+
+}
+
+.snake-score-display {
+    width: 90%;
+    background-color: #cdb229;
+    text-align: center;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.snake-time-display {
+    width: 90%;
+    background-color: #26c58b;
+    text-align: center;
+    border-radius: 15px;
+    margin: 3% auto;
+
+}

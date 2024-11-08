@@ -1,0 +1,56 @@
+/* BuscaMinas.css */
+
+/* Configuración del tablero */
+.grid-container {
+  display: grid;
+  gap: 2px;
+  margin: 20px auto;
+  border: 2px solid #333;
+  width: fit-content;
+  background-color: #333;
+  height: 70vh;
+  width: 40vw;
+}
+
+.cell {
+  background-color: #c0c0c0;
+  border: 2px solid #a9a9a9;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #666;
+  text-align: center;
+  line-height: var(--size);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  min-width: var(--size);
+  min-height: var(--size);
+}
+
+
+/* Celda revelada */
+.cell.revealed {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Mina revelada */
+.cell.revealed.mine {
+  background-color: #ff4c4c;
+  color: #fff;
+}
+
+/* Estilo del botón de reinicio */
+.buscaminasBoton {
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+}
+
+.buscaMinash1 {
+  text-align: center;
+  color: #333;
+}
