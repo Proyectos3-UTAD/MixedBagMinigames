@@ -1,2 +1,1 @@
-Ejemplo
-Hola
+Mixed bag minigames
