@@ -20,7 +20,8 @@
 }
 
 .GameDisplayTable {
-    margin: 5%;
+    margin-top: 30vh;
+    /* margin: 5%; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
