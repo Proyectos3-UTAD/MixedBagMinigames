@@ -20,7 +20,7 @@ function Menu({screenChanger}) {
             <h1 className={"MenuTitle"}>MixedBag Minigames</h1>
 
             <div className={"GameDisplayTable"}>
-                <GameMiniature
+                {/* <GameMiniature
 
                     gameName={"Pong"}
                     gameCssClass={"ImagePong"}
@@ -28,7 +28,7 @@ function Menu({screenChanger}) {
                     screenChanger={screenChanger}
                     gameComponent={
                         <Pong screenChanger={screenChanger}/>
-                    }/>
+                    }/> */}
 
                 <GameMiniature
                     gameName={"MineSweeper"}
@@ -67,7 +67,7 @@ function Menu({screenChanger}) {
                         <SpaceInvaders screenChanger={screenChanger}/>
                     }/>
 
-                <GameMiniature
+                {/* <GameMiniature
 
                     gameName={"Atari Breakout"}
                     gameCssClass={"ImageAtariBreakout   "}
@@ -75,7 +75,7 @@ function Menu({screenChanger}) {
                     screenChanger={screenChanger}
                     gameComponent={
                         <AtariBreakout screenChanger={screenChanger}/>
-                    }/>
+                    }/> */}
 
             </div>
         </div>
