@@ -142,7 +142,6 @@ function BuscaMinas({ screenChanger }) {
           row.map((cell, colIndex) => (
             <button key={colIndex} className={`buscaminasBoton cell ${cell.revealed ? "revealed" : ""}`} onClick={() => handleCellClick(rowIndex, colIndex)}>
               {cell.revealed && (cell.mine ? "💣" : cell.adjacentMines > 0 ? cell.adjacentMines : " ")}
-
             </button>
           ))
         ))}
