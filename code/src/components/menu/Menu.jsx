@@ -6,78 +6,64 @@ import '../../styles/menu/Menu.css';
 /**
  * Components
  */
+
 import GameMiniature from "./GameMiniature";
-import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
-import SpaceInvaders from "../spaceInvaders/space-invader.jsx";
-import Pong from "../pong/Pong";
-import AtariBreakout from "../atariBreakOut/AtariBreakout";
-import PacMan from '../pacMan/pacMan';
-import BuscaMinas from "../buscaMinas/buscaMinas";
 
 function Menu() {
     return (
         <div className={"Menu"}>
             <h1 className={"MenuTitle"}>MixedBag Minigames</h1>
 
-            {/*<div className={"GameDisplayTable"}>*/}
-            {/*    /!* <GameMiniature*/}
+            <div className={"GameDisplayTable"}>
 
-            {/*        gameName={"Pong"}*/}
-            {/*        gameCssClass={"ImagePong"}*/}
+                <GameMiniature
 
-            {/*        screenChanger={screenChanger}*/}
-            {/*        gameComponent={*/}
-            {/*            <Pong screenChanger={screenChanger}/>*/}
-            {/*        }/> *!/*/}
+                    gameName={"Pong"}
+                    gameCssClass={"ImagePong"}
+                    gameLink={"/Pong"}
 
-            {/*    <GameMiniature*/}
-            {/*        gameName={"MineSweeper"}*/}
-            {/*        gameCssClass={"ImageMineSweeper"}*/}
+                />
 
-            {/*        // screenChanger={screenChanger}*/}
-            {/*        gameComponent={*/}
-            {/*            <BuscaMinas screenChanger={screenChanger}/>*/}
-            {/*        }/>*/}
+                <GameMiniature
 
-            {/*    <GameMiniature*/}
-            {/*        gameName={"Snake"}*/}
-            {/*        gameCssClass={"ImageSnake"}*/}
+                    gameName={"MineSweeper"}
+                    gameCssClass={"ImageMineSweeper"}
+                    gameLink={"/MineSweeper"}
 
-            {/*        // screenChanger={screenChanger}*/}
-            {/*        gameComponent={*/}
-            {/*            <SnakeHomeScreen screenChanger={screenChanger}/>*/}
-            {/*        }/>*/}
+                />
 
-            {/*    <GameMiniature*/}
+                <GameMiniature
 
-            {/*        gameName={"PacMan"}*/}
-            {/*        gameCssClass={"ImagePacman"}*/}
+                    gameName={"Snake"}
+                    gameCssClass={"ImageSnake"}
+                    gameLink={"/Snake"}
 
-            {/*        screenChanger={screenChanger}*/}
-            {/*        gameComponent={*/}
-            {/*            <PacMan screenChanger={screenChanger}/>*/}
-            {/*        }/>*/}
+                />
 
-            {/*    <GameMiniature*/}
-            {/*        gameName={"SpaceInvaders"}*/}
-            {/*        gameCssClass={"ImageSpaceInvaders"}*/}
+                <GameMiniature
 
-            {/*        // screenChanger={screenChanger}*/}
-            {/*        // gameComponent={*/}
-            {/*            // <SpaceInvaders screenChanger={screenChanger}/>*/}
-            {/*        }/>*/}
+                    gameName={"PacMan"}
+                    gameCssClass={"ImagePacman"}
+                    gameLink={"/Pacman"}
 
-            {/*    /!* <GameMiniature*/}
+                />
 
-            {/*        gameName={"Atari Breakout"}*/}
-            {/*        gameCssClass={"ImageAtariBreakout   "}*/}
+                <GameMiniature
 
-            {/*        screenChanger={screenChanger}*/}
-            {/*        gameComponent={*/}
-            {/*            <AtariBreakout screenChanger={screenChanger}/>*/}
-            {/*        }/> *!/*/}
+                    gameName={"SpaceInvaders"}
+                    gameCssClass={"ImageSpaceInvaders"}
+                    gameLink={"/SpaceInvaders"}
 
-            {/*</div>*/}
+                />
+
+                <GameMiniature
+
+                    gameName={"Atari Breakout"}
+                    gameCssClass={"ImageAtariBreakout"}
+                    gameLink={"/AtariBreakout"}
+                />
+
+            </div>
         </div>
     );
 }
