@@ -6,8 +6,9 @@ import BuscaMinas from "./buscaMinas/buscaMinas";
 import SpaceInvaders from "./spaceInvaders/space-invader";
 import Pong from "./pong/Pong";
 import AtariBreakout from "./atariBreakOut/AtariBreakout";
+import SnakeGameScreen from "./snake/game/SnakeGameScreen";
 
-import '../styles/App.css'
+import '../styles/App.css';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/">
                     <Route index element={<Menu/>}/>
                     <Route path="/Snake" element={<SnakeHomeScreen/>}/>
+                    <Route path="/Snake/Game" element={<SnakeGameScreen/>}/>
                     <Route path="/Pacman" element={<PacMan/>}/>
                     <Route path="/MineSweeper" element={<BuscaMinas/>}/>ç
                     <Route path="/SpaceInvaders" element={<SpaceInvaders/>}/>

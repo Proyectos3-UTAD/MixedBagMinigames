@@ -1,17 +1,18 @@
 /**
  * Styles
  */
+import '../../styles/snake/Menu.css';
 
 /**
  * Components
  */
-import SnakeGameScreen from "./game/SnakeGameScreen.tsx";
 import HomeMenuButton from "../common/HomeMenuButton";
 
 /**
  * Modules
  */
-import {useState, ReactElement} from "react";
+import { useState, ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 /**
  * Classes
@@ -24,26 +25,28 @@ import GameSettings from "./settings/GameSettings.ts";
  * @returns {JSX.Element} The main menu of the snake mini game
  * @constructor
  */
-function SnakeHomeScreen({screenChanger}): ReactElement {
+function SnakeHomeScreen(): ReactElement {
 
-    const [gameSettings, ] = useState(new GameSettings());
-
-    const startGame = (): void => {
-        screenChanger(<SnakeGameScreen screenChanger={screenChanger} gameSettings={gameSettings}/>)
-    }
+	const [gameSettings,] = useState(new GameSettings());
 
 
-    return (
-        <div>
-            <h1>Snake</h1>
-            <button
-                onClick={startGame}>Play
-            </button>
-            <HomeMenuButton screenChanger={screenChanger}/>
-            <p>Mode</p>
-            <p>Scores</p>
-        </div>
-    );
+	return (
+		<div className="snake-menu">
+
+			<h1 className="snake-menu-title">Snake</h1>
+
+			<div className="snake-menu-options">
+				<Link to={'/Snake/Game'} className="snake-menu-option">
+					<p>Play</p>
+				</Link>
+				<p className="snake-menu-option">Settings</p>
+				<p className="snake-menu-option">Scores</p>
+				<HomeMenuButton classname="snake-menu-option snake-menu-home-option" />
+
+			</div>
+
+		</div>
+	);
 }
 
 export default SnakeHomeScreen;
