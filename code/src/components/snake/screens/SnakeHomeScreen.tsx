@@ -1,7 +1,7 @@
 /**
  * Styles
  */
-import '../../styles/snake/Menu.css';
+import '../../../styles/snake/Menu.css';
 
 /**
  * Components
@@ -11,13 +11,24 @@ import HomeMenuButton from "../../common/HomeMenuButton";
 /**
  * Modules
  */
-import {useState, ReactElement} from "react";
-import {Link} from "react-router-dom";
+import { useState, ReactElement } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * Classes
  */
 import GameSettings from "../settings/GameSettings.ts";
+import BoardDimensions from '../settings/BoardDimensions.ts';
+
+
+function SnakeGameSettings({ setSettingsOpen, setGameSettings }): ReactElement {
+
+	return (
+		<dialog className={"snake-settings-dialog"}>
+			<p>Hola!</p>
+		</dialog>
+	)
+}
 
 /**
  * Home screen of the snake minigame.
@@ -27,26 +38,49 @@ import GameSettings from "../settings/GameSettings.ts";
  */
 function SnakeHomeScreen(): ReactElement {
 
-    const [gameSettings,] = useState(new GameSettings());
+	const [gameSettings, setGameSettings] = useState(new GameSettings(new BoardDimensions(20, 20)));
+	const [settingsOpen, setSettingsOpen] = useState(false);
+	const [settingsEditor,] = useState(<SnakeGameSettings setSettingsOpen={setSettingsOpen} setGameSettings={setGameSettings} />)
 
+	const navigate = useNavigate();
 
-    return (
-        <div className="snake-menu">
+	return (
+		<div className="snake-menu">
 
-            <h1 className="snake-menu-title">Snake</h1>
+			<h1 className="snake-menu-title">Snake</h1>
 
-            <div className="snake-menu-options">
-                <Link to={'/Snake/Game'} className="snake-menu-option">
-                    <p>Play</p>
-                </Link>
-                <p className="snake-menu-option">Settings</p>
-                <p className="snake-menu-option">Scores</p>
-                <HomeMenuButton classname="snake-menu-option snake-menu-home-option"/>
+			<div className="snake-menu-options">
 
-            </div>
+				<Link
+					to={{
+						pathname="/Snake/Game"
+					}}
+					className="snake-menu-option"
+				>
+					<p>Play</p>
+				</Link>
 
-        </div>
-    );
+				<p className="snake-menu-option" onClick={() => {
+					console.log("Necesito apoyo!")
+					setSettingsOpen(true)
+				}}
+
+				>Settings</p>
+
+				<Link to={'/Snake/Scores'} className="snake-menu-option">
+					<p>Scores</p>
+				</Link>
+
+				<HomeMenuButton classname="snake-menu-option snake-menu-home-option" />
+
+			</div>
+
+			{
+				settingsOpen ? settingsEditor : null
+			}
+
+		</div>
+	);
 }
 
 export default SnakeHomeScreen;
