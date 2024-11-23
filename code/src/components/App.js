@@ -17,7 +17,7 @@ function App() {
                     <Route index element={<Menu/>}/>
                     <Route path="/Snake" element={<SnakeHomeScreen/>}/>
                     <Route path="/Pacman" element={<PacMan/>}/>
-                    <Route path="/MineSweeper" element={<BuscaMinas/>}/>ç
+                    <Route path="/MineSweeper" element={<BuscaMinas/>}/>
                     <Route path="/SpaceInvaders" element={<SpaceInvaders/>}/>
                     <Route path="/Pong" element={<Pong/>}/>
                     <Route path="/AtariBreakout" element={<AtariBreakout/>}/>
