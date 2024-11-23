@@ -6,76 +6,62 @@ import '../../styles/menu/Menu.css';
 /**
  * Components
  */
-import GameMiniature from "./GameMiniature";
-import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
-import SpaceInvaders from "../spaceInvaders/space-invader.jsx";
-import Pong from "../pong/Pong";
-import AtariBreakout from "../atariBreakOut/AtariBreakout";
-import PacMan from '../pacMan/pacMan';
-import BuscaMinas from"../buscaMinas/buscaMinas";
 
-function Menu({screenChanger}) {
+import GameMiniature from "./GameMiniature";
+
+function Menu() {
     return (
         <div className={"Menu"}>
             <h1 className={"MenuTitle"}>MixedBag Minigames</h1>
 
             <div className={"GameDisplayTable"}>
+
                 <GameMiniature
 
                     gameName={"Pong"}
                     gameCssClass={"ImagePong"}
+                    gameLink={"/Pong"}
 
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <Pong screenChanger={screenChanger}/>
-                    }/>
+                />
 
                 <GameMiniature
+
                     gameName={"MineSweeper"}
                     gameCssClass={"ImageMineSweeper"}
+                    gameLink={"/MineSweeper"}
 
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <BuscaMinas screenChanger={screenChanger}/>
-                    }/>
+                />
 
                 <GameMiniature
+
                     gameName={"Snake"}
                     gameCssClass={"ImageSnake"}
+                    gameLink={"/Snake"}
 
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <SnakeHomeScreen screenChanger={screenChanger}/>
-                    }/>
+                />
 
                 <GameMiniature
 
                     gameName={"PacMan"}
                     gameCssClass={"ImagePacman"}
+                    gameLink={"/Pacman"}
 
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <PacMan  screenChanger={screenChanger}/>
-                    }/>
+                />
 
                 <GameMiniature
+
                     gameName={"SpaceInvaders"}
                     gameCssClass={"ImageSpaceInvaders"}
+                    gameLink={"/SpaceInvaders"}
 
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <SpaceInvaders screenChanger={screenChanger}/>
-                    }/>
+                />
 
                 <GameMiniature
 
                     gameName={"Atari Breakout"}
-                    gameCssClass={"ImageAtariBreakout   "}
-
-                    screenChanger={screenChanger}
-                    gameComponent={
-                        <AtariBreakout screenChanger={screenChanger}/>
-                    }/>
+                    gameCssClass={"ImageAtariBreakout"}
+                    gameLink={"/AtariBreakout"}
+                />
 
             </div>
         </div>

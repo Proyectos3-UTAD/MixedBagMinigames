@@ -1,15 +1,12 @@
 import '../../styles/menu/GameMiniature.css';
+import {Link} from "react-router-dom";
 
-function GameMiniature({gameName, gameCssClass, screenChanger, gameComponent}) {
-
-    const loadGame = () => {
-        screenChanger(gameComponent);
-    }
+function GameMiniature({gameName, gameCssClass, gameLink}) {
 
     return (
-        <div onClick={loadGame} className={`GameMiniature ${gameCssClass}`}>
+        <Link to={gameLink} className={`GameMiniature ${gameCssClass}`}>
             <p>{gameName}</p>
-        </div>
+        </Link>
     );
 
 }
