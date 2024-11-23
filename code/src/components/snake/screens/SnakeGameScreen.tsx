@@ -6,25 +6,25 @@ import '../../../styles/snake/GameScreen.css'
 /**
  * Components
  */
-import Board from "./board/Board.tsx";
+import Board from "../game/board/Board.tsx";
 import HomeMenuButton from "../../common/HomeMenuButton";
 import SnakeHomeButton from "../SnakeHomeButton.tsx";
-import Fruit from "./fruits/Fruit.tsx";
-import SnakeHomeScreen from "../SnakeHomeScreen.tsx";
+import Fruit from "../game/fruits/Fruit.tsx";
+import SnakeHomeScreen from "./SnakeHomeScreen.tsx";
 
 /**
  * Modules
  */
 import {useState, useEffect, useRef, ReactElement} from "react";
 import Directions from "../../common/constants/Directions";
-import FruitPositionGenerator from "./fruits/FruitPositionGenerator.ts";
+import FruitPositionGenerator from "../game/fruits/FruitPositionGenerator.ts";
 
 /**
  * Classes
  */
 import InputHandler from "../../common/utils/InputHandler";
-import Position from "./board/Position.ts";
-import Snake from "./snake/Snake.tsx";
+import Position from "../game/board/Position.ts";
+import Snake from "../game/snake/Snake.tsx";
 import Timer from "../../common/Timer";
 
 
@@ -33,7 +33,7 @@ function SnakeGameScreen({screenChanger, gameSettings}): ReactElement {
     const [inputDirection, setInputDirection] = useState(Directions.DOWN);
     const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
     const [score, setScore] = useState(0);
-    const [startTime, ] = useState(new Date().getTime());
+    const [startTime,] = useState(new Date().getTime());
 
     const boardContentsRef = useRef(boardContents);
     const inputDirectionRef = useRef(inputDirection);

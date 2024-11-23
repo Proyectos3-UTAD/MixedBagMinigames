@@ -18,7 +18,7 @@ function SnakeHomeButton(): ReactElement {
 
 
 	return (
-		<Link to={'/Snake'}>
+		<Link to={'/Snake'} className="snake-home-button">
 			<p>Snake</p>
 		</Link>
 	);

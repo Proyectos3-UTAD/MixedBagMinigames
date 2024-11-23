@@ -6,6 +6,7 @@
 	width: 100vw;
 	height: 100vh;
 
+	background-color: rgb(111, 131, 82);
 	background-image: url('../../static/images/snake/Menu.gif');
 	background-size: auto;
 	/* Adjust the size of the GIF appropriately */
@@ -81,4 +82,8 @@
 
 	color: gray;
 
+}
+
+.snake-home-button{
+	
 }
