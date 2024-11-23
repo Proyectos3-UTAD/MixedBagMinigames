@@ -12,7 +12,7 @@ import HomeMenuButton from "../../common/HomeMenuButton";
  * Modules
  */
 import { useState, ReactElement } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * Classes
@@ -42,7 +42,6 @@ function SnakeHomeScreen(): ReactElement {
 	const [settingsOpen, setSettingsOpen] = useState(false);
 	const [settingsEditor,] = useState(<SnakeGameSettings setSettingsOpen={setSettingsOpen} setGameSettings={setGameSettings} />)
 
-	const navigate = useNavigate();
 
 	return (
 		<div className="snake-menu">
@@ -52,12 +51,12 @@ function SnakeHomeScreen(): ReactElement {
 			<div className="snake-menu-options">
 
 				<Link
-					to={{
-						pathname="/Snake/Game"
-					}}
+					to={"/Snake/Game"}
+					state={{ gameSettings }}
 					className="snake-menu-option"
 				>
 					<p>Play</p>
+					
 				</Link>
 
 				<p className="snake-menu-option" onClick={() => {

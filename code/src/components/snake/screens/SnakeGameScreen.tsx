@@ -21,20 +21,24 @@ import GameSettings from '../settings/GameSettings.ts';
 
 function SnakeGameScreen(): ReactElement {
 
-	const [input,] = useState(useLocation().state || null);
+	// const [input,] = useState(useLocation().state || null);
 
-	console.log(input.className)
+	// console.log("input game screen", typeof (input.gameSettings as GameSettings))
+
 	return (
 		<div>
 			<HomeMenuButton classname={""} />
-
-			{
-				input instanceof GameSettings ?
-					<SnakeGame gameSettings={input} />
-					: <SnakeGame gameSettings={new GameSettings()}/> 
-			}
-
 			<SnakeHomeButton />
+
+			{/* {
+				input ?
+					<SnakeGame gameSettings={(input.gameSettings as GameSettings)} />
+					: <SnakeGame gameSettings={new GameSettings()} />
+
+			} */}
+
+			<SnakeGame gameSettings={new GameSettings()} />
+
 		</div>
 	);
 }
