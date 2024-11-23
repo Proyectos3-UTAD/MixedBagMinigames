@@ -78,17 +78,19 @@
 	font-size: 3em;
 }
 
+.snake-menu-option:hover {
+	
+	background-color: antiquewhite;
+
+}
+
 .snake-menu-home-option {
 
 	color: gray;
 
 }
 
-.snake-home-button{
-	
-}
-
-.snake-settings-dialog{
+.snake-settings-dialog {
 	width: 100%;
 	height: 100%;
 	background-color: rebeccapurple;
