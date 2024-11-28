@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
+import "../../styles/spaceInvaders/style.css";
 import { useInterval } from "./useInterval";
 import {
   CANVAS_WIDTH,

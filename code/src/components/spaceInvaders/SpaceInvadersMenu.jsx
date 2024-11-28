@@ -1,3 +1,4 @@
+import '../../styles/spaceInvaders/Menu.css';
 import React from "react";
 import SpaceInvaders from "../spaceInvaders/space-invader";
 import ClassicSpaceInvaders from "../spaceInvaders/classic-space-invader";
