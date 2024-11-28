@@ -1,4 +1,4 @@
-import '../../styles/spaceInvaders/Menu.css';
+// import '../../styles/spaceInvaders/style.css';
 import '../../styles/spaceInvaders/Menu.css';
 import HomeMenuButton from "../common/HomeMenuButton";
 import {Link} from "react-router-dom";

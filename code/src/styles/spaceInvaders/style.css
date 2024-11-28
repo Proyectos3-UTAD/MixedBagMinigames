@@ -65,6 +65,7 @@
 	border-radius: 5px;
 	font-size: 16px;
 	z-index: 10;
+	text-decoration: none;
 }
 
 .space-invaders-back-to-menu:hover {

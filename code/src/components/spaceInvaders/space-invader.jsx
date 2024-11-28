@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../../styles/spaceInvaders/style.css";
 import { useInterval } from "./useInterval";
@@ -11,7 +12,7 @@ import {
   START_POSITION,
 } from "./constants";
 
-const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
+const SpaceInvaders = ({ mode = "normal"}) => {
   const [player, setPlayer] = useState({
     x: START_POSITION.x,
     y: CANVAS_HEIGHT - 60,
@@ -152,15 +153,15 @@ const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
 
   if (gameOver) {
     return (
-      <div className="game-container">
-        <div className="game-over-screen">
+      <div className="space-invaders-game-container">
+        <div className="space-invaders-game-over-screen">
           <h1>Game Over</h1>
           <h2>Final Score: {score}</h2>
-          <div className="buttons">
-            <button className="menu-button" onClick={onReturnToMenu}>
+          <div className="space-invaders-buttons">
+            <Link className="space-invaders-menu-button" to={"/"}>
               Menu
-            </button>
-            <button className="retry-button" onClick={resetGame}>
+            </Link>
+            <button className="space-invaders-retry-button" onClick={resetGame}>
               Retry
             </button>
           </div>
@@ -170,11 +171,11 @@ const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
   }
 
   return (
-    <div className="game-container">
-      <div className="canvas">
+    <div className="space-invaders-game-container">
+      <div className="space-invaders-canvas">
         {/* Dibujar jugador */}
         <div
-          className="player"
+          className="space-invaders-player"
           style={{ left: player.x, top: player.y }}
         ></div>
 
@@ -182,7 +183,7 @@ const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
         {bullets.map((bullet, index) => (
           <div
             key={index}
-            className="bullet"
+            className="space-invaders-bullet"
             style={{ left: bullet.x, top: bullet.y }}
           ></div>
         ))}
@@ -191,19 +192,19 @@ const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
         {enemies.map((enemy, index) => (
           <div
             key={index}
-            className="enemy"
+            className="space-invaders-enemy"
             style={{ left: enemy.x, top: enemy.y }}
           ></div>
         ))}
 
         {/* Mostrar puntaje */}
-        <div className="score">Score: {score}</div>
+        <div className="space-invaders-score">Score: {score}</div>
       </div>
 
       {/* Botón para volver al menú */}
-      <button
-        className="back-to-menu"
-        onClick={onReturnToMenu}
+      <Link
+        className="space-invaders-back-to-menu"
+        to={"/"}
         style={{
           position: "absolute",
           bottom: "20px",
@@ -211,7 +212,7 @@ const SpaceInvaders = ({ mode = "normal", onReturnToMenu }) => {
         }}
       >
         Menu
-      </button>
+      </Link>
     </div>
   );
 };
