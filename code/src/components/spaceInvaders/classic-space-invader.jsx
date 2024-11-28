@@ -15,6 +15,7 @@ const ClassicSpaceInvaders = ({ onReturnToMenu }) => {
     x: START_POSITION.x,
     y: CANVAS_HEIGHT - 60,
   });
+  const [gameStarted, setGameStarted] = useState(false);
   const [bullets, setBullets] = useState([]);
   const [enemyBullets, setEnemyBullets] = useState([]);
   const [enemies, setEnemies] = useState([]);
@@ -158,6 +159,7 @@ const ClassicSpaceInvaders = ({ onReturnToMenu }) => {
         bullet.y < player.y + 50
       ) {
         setGameOver(true);
+		setGameStarted(false);
       }
     });
   }, [enemyBullets]);
@@ -171,7 +173,7 @@ const ClassicSpaceInvaders = ({ onReturnToMenu }) => {
 
   // Cuando todos los enemigos son eliminados
   useEffect(() => {
-    if (enemies.length === 0 && !gameOver) {
+    if (gameStarted && enemies.length === 0 && !gameOver) {
       setLevel((prev) => prev + 1); // Incrementar nivel
       setEnemySpeed((prev) => prev + 0.5); // Incrementar velocidad
       setTimeout(() => setEnemies(generateEnemies()), 2000); // Regenerar enemigos tras 2 segundos
@@ -196,6 +198,7 @@ const ClassicSpaceInvaders = ({ onReturnToMenu }) => {
     setGameOver(false);
     setLevel(1); // Reiniciar nivel
     setEnemySpeed(GAME_SPEED / 8); // Reiniciar velocidad
+	setGameStarted(true);
   };
 
   if (gameOver) {
