@@ -12,7 +12,7 @@
 .canvas {
   width: 800px;
   height: 600px;
-  background: url('./assets/background.png') no-repeat center center;
+  background: url('../../static/images/spaceInvaders/background.png') no-repeat center center;
   background-size: cover;
   position: relative;
 }
@@ -21,7 +21,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background: url('./assets/player.png') no-repeat center center;
+  background: url('../../static/images/spaceInvaders/player.png') no-repeat center center;
   background-size: contain;
 }
 
@@ -29,7 +29,7 @@
   position: absolute;
   width: 10px;
   height: 20px;
-  background: url('./assets/bullet.png') no-repeat center center;
+  background: url('../../static/images/spaceInvaders/bullet.png') no-repeat center center;
   background-size: contain;
 }
 
@@ -37,7 +37,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background: url('./assets/enemy.png') no-repeat center center;
+  background: url('../../static/images/spaceInvaders/enemy.png') no-repeat center center;
   background-size: cover;
 }
 
