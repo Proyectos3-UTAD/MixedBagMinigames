@@ -1,19 +1,15 @@
-import Menu from "../menu/Menu";
+import {Link} from "react-router-dom";
+
 /**
  * Changes the screen displayed to the menu of the application.
- * @param {*} param0 The screen changer to set the screen in the app.
- * @returns 
+ * @returns
  */
-function HomeMenuButton({screenChanger}) {
-
-    const returnHome = () => {
-        screenChanger(<Menu screenChanger={screenChanger}/>);
-    }
+function HomeMenuButton() {
 
     return (
-        <button onClick={returnHome}>
+        <Link to={"/"}>
             Home
-        </button>
+        </Link>
     );
 }
 
