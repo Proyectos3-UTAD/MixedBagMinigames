@@ -82,3 +82,20 @@ h1 {
 .reset-button:hover {
   background-color: #ffe066;
 }
+
+.game-end {
+  margin: 20px;
+  text-align: center;
+}
+
+.game-end p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.game-end button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
