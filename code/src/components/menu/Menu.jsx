@@ -8,7 +8,7 @@ import '../../styles/menu/Menu.css';
  */
 import GameMiniature from "./GameMiniature";
 import SnakeHomeScreen from "../snake/SnakeHomeScreen.tsx";
-import SpaceInvaders from "../spaceInvaders/space-invader.jsx";
+import SpaceInvadersMenu from "../spaceInvaders/SpaceInvadersMenu";
 import Pong from "../pong/Pong";
 import AtariBreakout from "../atariBreakOut/AtariBreakout";
 import PacMan from '../pacMan/pacMan';
@@ -61,11 +61,11 @@ function Menu({screenChanger}) {
                 <GameMiniature
                     gameName={"SpaceInvaders"}
                     gameCssClass={"ImageSpaceInvaders"}
-
                     screenChanger={screenChanger}
                     gameComponent={
-                        <SpaceInvaders screenChanger={screenChanger}/>
-                    }/>
+                        <SpaceInvadersMenu screenChanger={screenChanger} />
+                    }         
+                />
 
                 <GameMiniature
 

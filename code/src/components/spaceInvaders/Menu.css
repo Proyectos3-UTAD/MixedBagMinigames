@@ -1,0 +1,46 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+  }
+  
+  .menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .menu-buttons button {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .menu-buttons button:hover {
+    background-color: #388e3c;
+  }
+
+  .level-display {
+    position: absolute;
+    top: 20px; /* Posición vertical por encima del canvas */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8); /* Brillo */
+  }
+  
