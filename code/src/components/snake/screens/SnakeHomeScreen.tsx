@@ -11,7 +11,7 @@ import HomeMenuButton from "../../common/HomeMenuButton";
 /**
  * Modules
  */
-import { useState, ReactElement } from "react";
+import { useState,useEffect, useRef, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
 /**
@@ -22,9 +22,17 @@ import BoardDimensions from '../settings/BoardDimensions.ts';
 
 
 function SnakeGameSettings({ setSettingsOpen, setGameSettings }): ReactElement {
+	
+	const dialogRef = useRef<HTMLDialogElement>(null);
+
+	useEffect(() => {
+	  if (dialogRef.current) {
+		dialogRef.current.showModal();
+	  }
+	}, [setSettingsOpen]);
 
 	return (
-		<dialog className={"snake-settings-dialog"}>
+		<dialog className={"snake-settings-dialog"} >
 			<p>Hola!</p>
 		</dialog>
 	)
@@ -40,7 +48,7 @@ function SnakeHomeScreen(): ReactElement {
 
 	const [gameSettings, setGameSettings] = useState(new GameSettings(new BoardDimensions(20, 20)));
 	const [settingsOpen, setSettingsOpen] = useState(false);
-	const [settingsEditor,] = useState(<SnakeGameSettings setSettingsOpen={setSettingsOpen} setGameSettings={setGameSettings} />)
+	const [settingsEditor,] = useState(<SnakeGameSettings setSettingsOpen={setSettingsOpen} setGameSettings={setGameSettings}/>)
 
 
 	return (

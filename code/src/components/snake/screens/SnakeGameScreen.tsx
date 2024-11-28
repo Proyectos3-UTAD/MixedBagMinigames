@@ -15,7 +15,6 @@ import SnakeGame from '../game/SnakeGame.tsx';
  * Modules
  */
 import { ReactElement, useState } from "react";
-import { useLocation } from 'react-router-dom';
 import GameSettings from '../settings/GameSettings.ts';
 
 
@@ -28,7 +27,7 @@ function SnakeGameScreen(): ReactElement {
 	return (
 		<div>
 			<HomeMenuButton classname={""} />
-			<SnakeHomeButton />
+			<SnakeHomeButton className={""}/>
 
 			{/* {
 				input ?
