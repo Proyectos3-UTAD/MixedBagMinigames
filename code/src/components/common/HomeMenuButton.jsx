@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
  * Changes the screen displayed to the menu of the application.
  * @returns
  */
-function HomeMenuButton({classname}) {
+function HomeMenuButton({className}) {
 
     return (
-        <Link to={"/"}>
+        <Link className={className} to={"/"}>
             Home
         </Link>
     );
