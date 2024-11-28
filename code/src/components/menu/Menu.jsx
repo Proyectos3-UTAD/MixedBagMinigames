@@ -51,7 +51,7 @@ function Menu() {
 
                     gameName={"SpaceInvaders"}
                     gameCssClass={"ImageSpaceInvaders"}
-                    gameLink={"/SpaceInvaders"}
+                    gameLink={"/SpaceInvadersMenu"}
 
                 />
 
