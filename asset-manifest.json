@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/MixedBagMinigames/static/css/main.3d597d93.css",
-    "main.js": "/MixedBagMinigames/static/js/main.3fc3cbf1.js",
-    "static/media/background.png": "/MixedBagMinigames/static/media/background.066fe0a7721e6662e614.png",
-    "static/media/minesweeperMiniature.png": "/MixedBagMinigames/static/media/minesweeperMiniature.3bdf6ef975e8e4721775.png",
-    "static/media/snakeMiniature.png": "/MixedBagMinigames/static/media/snakeMiniature.f33cc9b74f4bd0c302e4.png",
-    "static/media/atariMiniature.jpg": "/MixedBagMinigames/static/media/atariMiniature.44d2c6835e2bb749a401.jpg",
-    "static/media/pacmanMiniature.png": "/MixedBagMinigames/static/media/pacmanMiniature.5f8420f16797fd6ea057.png",
-    "static/media/pongMiniature.png": "/MixedBagMinigames/static/media/pongMiniature.407cab2ce7d2e5f10c45.png",
-    "static/media/spaceinvadersMiniature.png": "/MixedBagMinigames/static/media/spaceinvadersMiniature.92c93b25ade115929dd4.png",
-    "index.html": "/MixedBagMinigames/index.html",
-    "main.3d597d93.css.map": "/MixedBagMinigames/static/css/main.3d597d93.css.map",
-    "main.3fc3cbf1.js.map": "/MixedBagMinigames/static/js/main.3fc3cbf1.js.map"
+    "main.css": "/static/css/main.bc588885.css",
+    "main.js": "/static/js/main.9ae3f3fe.js",
+    "static/media/background-image.jpg": "/static/media/background-image.9700f4ce423953566227.jpg",
+    "static/media/background.png": "/static/media/background.066fe0a7721e6662e614.png",
+    "static/media/minesweeperMiniature.png": "/static/media/minesweeperMiniature.3bdf6ef975e8e4721775.png",
+    "static/media/pacmanMiniature.png": "/static/media/pacmanMiniature.eaa5e12507607c105e6e.png",
+    "static/media/ARCADE_I.TTF": "/static/media/ARCADE_I.195823c03e61b3823a2e.TTF",
+    "static/media/snakeMiniature.png": "/static/media/snakeMiniature.f33cc9b74f4bd0c302e4.png",
+    "static/media/atariMiniature.jpg": "/static/media/atariMiniature.44d2c6835e2bb749a401.jpg",
+    "static/media/pongMiniature.png": "/static/media/pongMiniature.407cab2ce7d2e5f10c45.png",
+    "static/media/spaceinvadersMiniature.png": "/static/media/spaceinvadersMiniature.92c93b25ade115929dd4.png",
+    "index.html": "/index.html",
+    "main.bc588885.css.map": "/static/css/main.bc588885.css.map",
+    "main.9ae3f3fe.js.map": "/static/js/main.9ae3f3fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d597d93.css",
-    "static/js/main.3fc3cbf1.js"
+    "static/css/main.bc588885.css",
+    "static/js/main.9ae3f3fe.js"
   ]
 }
