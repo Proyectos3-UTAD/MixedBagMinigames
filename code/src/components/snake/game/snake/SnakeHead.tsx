@@ -7,8 +7,8 @@ import {ReactElement} from "react";
 function SnakeHead(): ReactElement {
 
     return (
-        <div className={"snake-head"}></div>
-    );
+        <div className={"snake-head"}/>
+	);
 
 }
 

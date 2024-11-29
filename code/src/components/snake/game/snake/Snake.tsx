@@ -3,20 +3,26 @@ import SnakeHead from "./SnakeHead.tsx";
 import SnakeBody from "./SnakeBody.tsx";
 import Fruit from "../fruits/Fruit.tsx";
 import Position from "../board/Position.ts";
-
+import Directions from "../../../common/constants/Directions.js";
 class SnakePartPosition {
 
     private readonly _snakePart: ReactElement;
     private _position: string;
+	private _direction: string;
 
-    constructor(snakePart: ReactElement, position: string) {
+    constructor(snakePart: ReactElement, position: string, direction?: string) {
         this._snakePart = snakePart;
         this._position = position;
+		this._direction = direction;
     }
 
     set position(position: string) {
         this._position = position;
     }
+
+	set direction(direction: string){
+		this._direction = direction;
+	}
 
     get position(): string {
         return this._position;
@@ -25,6 +31,10 @@ class SnakePartPosition {
     get snakePart(): ReactElement {
         return this._snakePart
     }
+
+	get direction(): string {
+		return this._direction;
+	}
 }
 /**
  * Snake class.
@@ -49,15 +59,15 @@ class Snake {
     }
 
     _createHead(headPosition: string) {
-        this._snakeBody.push(new SnakePartPosition(<SnakeHead/>, headPosition));
+        this._snakeBody.push(new SnakePartPosition(<SnakeHead/>, headPosition, Directions.DOWN));
     }
 
     addGrowth(): void {
         this._growthLeft += 1;
     }
 
-    grow(bodyPartPosition: string): void {
-        this._snakeBody.push(new SnakePartPosition(<SnakeBody/>, bodyPartPosition));
+    grow(bodyPartPosition: string, direction:string): void {
+        this._snakeBody.push(new SnakePartPosition(<SnakeBody/>, bodyPartPosition, direction));
         this._growthLeft--;
     }
 
@@ -65,19 +75,26 @@ class Snake {
 
         let nextPos: Position = Position.parsePositionFromString(this._snakeBody[0].position).getNextPosition(inputDirection);
 
+		let nextDir: string = inputDirection;
+
         let tempPos: Position;
+
+		let tempDir: string;
 
         this._snakeBody.forEach((bodyPart) => {
 
             tempPos = Position.parsePositionFromString(bodyPart.position);
+			tempDir = bodyPart.direction;
             bodyPart.position = nextPos.toString();
+			bodyPart.direction = nextDir;
             nextPos = tempPos;
+			nextDir = tempDir;
 
         });
 
         if (this.growthLeft) {
 
-            this.grow(nextPos.toString());
+            this.grow(nextPos.toString(), nextDir);
 
         } else {
             this.positionToClean = nextPos.toString();
