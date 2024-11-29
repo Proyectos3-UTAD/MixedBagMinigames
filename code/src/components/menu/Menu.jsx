@@ -6,7 +6,6 @@ import '../../styles/menu/Menu.css';
 /**
  * Components
  */
-
 import GameMiniature from "./GameMiniature";
 
 function Menu() {
@@ -52,7 +51,7 @@ function Menu() {
 
                     gameName={"SpaceInvaders"}
                     gameCssClass={"ImageSpaceInvaders"}
-                    gameLink={"/SpaceInvaders"}
+                    gameLink={"/SpaceInvadersMenu"}
 
                 />
 
