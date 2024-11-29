@@ -1,17 +1,9 @@
 /**
- * Styles
- */
-
-
-/**
- * Components
- */
-import SnakeHomeScreen from "./SnakeHomeScreen.tsx";
-
-/**
  * Modules
  */
-import {ReactElement} from "react";
+import { ReactElement } from "react";
+import { Link } from "react-router-dom";
+
 
 /**
  * Component to return to the main Snake minigame screen
@@ -19,17 +11,15 @@ import {ReactElement} from "react";
  * @returns {JSX.Element} The button to return to the snake minigame main screen
  * @constructor
  */
-function SnakeHomeButton({screenChanger}): ReactElement {
+function SnakeHomeButton({ className }): ReactElement {
 
-    const returnHome = (): void => {
-        screenChanger(<SnakeHomeScreen screenChanger={screenChanger}/>);
-    }
 
-    return (
-        <button onClick={returnHome}>
-            Back
-        </button>
-    );
+	return (
+		<Link to={'/Snake'} className={className}>
+			Snake
+		</Link>
+	);
+
 }
 
 export default SnakeHomeButton;
