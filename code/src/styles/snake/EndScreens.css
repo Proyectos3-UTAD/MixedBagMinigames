@@ -1,0 +1,76 @@
+.snake-victory-propmt{
+	background-color: brown;
+}
+.snake-defeat-propmt{
+	position: absolute;
+	z-index: 1;
+
+	width: 30vw;
+	height: 40vh;
+
+	top:20vh;
+	left: 35vw;
+
+	border-radius: 10px;
+
+	background-color: rgb(139, 190, 190);
+
+}
+.snake-end-game-propmt-title{
+
+	position: relative;
+	width: 100%;
+	top: 5%;
+	text-align: center;
+
+}
+.snake-defeat-gif{
+	
+	background-image: url("../../static/images/snake/BadResults.gif");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+
+	width: 20vw;
+	height: 25vh;
+
+	position: relative;
+	left: 15%;
+	top: 6%;
+
+}
+.snake-victory-gif{
+	background-image: url("../../static/images/snake/GoodResults.gif");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+
+	width: 20vw;
+	height: 25vh;
+
+	position: relative;
+	left: 15%;
+	top: 6%;
+}
+.snake-end-screen-button-holder{
+	position: relative;
+	display: grid;
+	column-gap: 1%;
+	grid-template-columns: repeat(2, 1fr);
+	top:10%;
+	width: 60%;
+	left: 18%;
+}
+.snake-end-game-link{
+
+	position: relative;
+	background-color: aliceblue;
+	color: green;
+	text-decoration: none;
+	font-size: 1.4em;
+	font-weight: bolder;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
