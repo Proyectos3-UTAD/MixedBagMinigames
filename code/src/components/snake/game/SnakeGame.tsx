@@ -23,7 +23,6 @@ import InputHandler from "../../common/utils/InputHandler";
 import Position from "../game/board/Position.ts";
 import Snake from "../game/snake/Snake.tsx";
 import Timer from "../../common/Timer";
-import SnakeHomeButton from '../SnakeHomeButton.tsx';
 import { Link } from 'react-router-dom';
 
 
@@ -33,7 +32,6 @@ function SnakeGame({ gameSettings }): ReactElement {
 	const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
 	const [score, setScore] = useState(0);
 	const [startTime,] = useState(new Date().getTime());
-    const [isModalVisible, setModalVisible] = useState(false);
 
 	const boardContentsRef = useRef(boardContents);
 	const inputDirectionRef = useRef(inputDirection);
@@ -143,7 +141,7 @@ function SnakeGame({ gameSettings }): ReactElement {
 		snake.moveSnake(inputDirectionRef.current);
 
 		if (snake.collided) {
-			setModalVisible(true)
+			// setModalVisible(true)
 		}
 
 		snake.placeSnake(tickBoardContents);
@@ -166,6 +164,7 @@ function SnakeGame({ gameSettings }): ReactElement {
 	}, []);
 
 	return (
+
 		<div className={"snake-game-board"}>
 			<div className={"snake-game-display"}>
 				<div className={"snake-game-summary"}>
@@ -178,21 +177,7 @@ function SnakeGame({ gameSettings }): ReactElement {
 					boardColors={gameSettings.boardColors}
 				/>
 			</div>
-			{isModalVisible && (
-                <dialog className="modal-overlay">
-                    <div className="modal">
-                        <h2>Game Over</h2>
-                        <p>Time Lasted: {} seconds</p>
-                        <p>Score: {score}</p>
-                        <div className="modal-buttons">
-                            <button onClick={startGame}>Reset Game</button>
-                            <Link to="/">
-                                <button>Back to Menu</button>
-                            </Link>
-                        </div>
-                    </div>
-                </dialog>
-            )}
+
 		</div>
 	);
 }
