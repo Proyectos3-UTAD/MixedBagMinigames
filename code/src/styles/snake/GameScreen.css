@@ -51,6 +51,7 @@
 
 .snake-common-button {
 	position: absolute;
+	z-index: 1;
 	text-decoration: none;
 	color: white;
 	background-color: #26c58b;
