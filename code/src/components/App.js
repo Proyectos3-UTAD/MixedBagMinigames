@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from "./menu/Menu";
-import SnakeHomeScreen from "./snake/SnakeHomeScreen";
+import SnakeHomeScreen from "./snake/screens/SnakeHomeScreen";
+import SnakeGameScreen from "./snake/screens/SnakeGameScreen";
+import SnakeScoreScreen from "./snake/screens/SnakeScoreScreen";
 import BuscaMinas from "./buscaMinas/buscaMinas";
 import SpaceInvaders from "./spaceInvaders/space-invader";
 import Pong from "./pong/Pong";

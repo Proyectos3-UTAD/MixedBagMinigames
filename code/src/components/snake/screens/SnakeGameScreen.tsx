@@ -26,7 +26,7 @@ function SnakeGameScreen(): ReactElement {
 
 	return (
 		<div>
-			<HomeMenuButton classname={"snake-common-button snake-home-button"} />
+			<HomeMenuButton className={"snake-common-button snake-home-button"} />
 			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
 
 			{/* {

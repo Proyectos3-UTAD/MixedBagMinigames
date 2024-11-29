@@ -78,7 +78,7 @@ function SnakeHomeScreen(): ReactElement {
 					<p>Scores</p>
 				</Link>
 
-				<HomeMenuButton classname="snake-menu-option snake-menu-home-option" />
+				<HomeMenuButton className="snake-menu-option snake-menu-home-option" />
 
 			</div>
 
