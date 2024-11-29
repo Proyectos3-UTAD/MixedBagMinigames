@@ -15,13 +15,13 @@ function Menu() {
 
             <div className={"GameDisplayTable"}>
 
-                <GameMiniature
+                {/* <GameMiniature
 
                     gameName={"Pong"}
                     gameCssClass={"ImagePong"}
                     gameLink={"/Pong"}
 
-                />
+                /> */}
 
                 <GameMiniature
 
@@ -55,12 +55,12 @@ function Menu() {
 
                 />
 
-                <GameMiniature
+                {/* <GameMiniature
 
                     gameName={"Atari Breakout"}
                     gameCssClass={"ImageAtariBreakout"}
                     gameLink={"/AtariBreakout"}
-                />
+                /> */}
 
             </div>
         </div>
