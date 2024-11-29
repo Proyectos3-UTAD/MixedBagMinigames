@@ -9,3 +9,18 @@
     height: 100%;
     background-color: #095097;
 }
+.snake-right {
+	transform: rotate(0);
+}
+
+.snake-up {
+	transform: rotate(90);
+}
+
+.snake-left {
+	transform: rotate(180);
+}
+
+.snake-down {
+	transform: rotate(270);
+}

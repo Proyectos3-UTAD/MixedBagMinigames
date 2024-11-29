@@ -2,6 +2,7 @@
  * Styles
  */
 import '../../../../styles/snake/Fruit.css';
+// import '../../../../static/images/snake/apple.png';
 
 /**
  * Components
@@ -16,10 +17,14 @@ import {ReactElement} from "react";
 function Fruit(): ReactElement {
 
     return (
-        <div className={"Fruit"}>
 
-        </div>
-    )
+		<div className={"fruit"}>
+
+		</div>
+        // <img src='../../../../static/images/snake/Menu.gif' alt="" className={"Fruit"}/>
+        // <img src='../../../../static/images/snake/apple.png' alt="" className={"Fruit"}/>
+
+    );
 
 }
 

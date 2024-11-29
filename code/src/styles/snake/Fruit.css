@@ -1,8 +1,9 @@
-.Fruit {
+.fruit {
     width: 50%;
     height: 50%;
 	/* z-index: -1; */
-	/* background-color: red; */
+	/* background-color: rgba(0, 0, 255, 0); */
 	background-image: url("../../static/images/snake/apple.png");
 	background-position: center;
+	background-size: contain;
 }
