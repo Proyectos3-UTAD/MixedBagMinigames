@@ -4,9 +4,10 @@ import SnakeHomeScreen from "./snake/SnakeHomeScreen";
 import PacMan from "./pacMan/pacMan";
 import BuscaMinas from "./buscaMinas/buscaMinas";
 import SpaceInvaders from "./spaceInvaders/space-invader";
+import SpaceInvadersMenu from "./spaceInvaders/SpaceInvadersMenu";
+import ClassicSpaceInvaders from "./spaceInvaders/classic-space-invader";
 import Pong from "./pong/Pong";
 import AtariBreakout from "./atariBreakOut/AtariBreakout";
-
 import '../styles/App.css'
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
                     <Route path="/Snake" element={<SnakeHomeScreen/>}/>
                     <Route path="/Pacman" element={<PacMan/>}/>
                     <Route path="/MineSweeper" element={<BuscaMinas/>}/>
+                    <Route path="/SpaceInvadersMenu" element={<SpaceInvadersMenu/>}/>
                     <Route path="/SpaceInvaders" element={<SpaceInvaders/>}/>
+                    <Route path="/ClassicSpaceInvaders" element={<ClassicSpaceInvaders/>}/>
                     <Route path="/Pong" element={<Pong/>}/>
                     <Route path="/AtariBreakout" element={<AtariBreakout/>}/>
                 </Route>
