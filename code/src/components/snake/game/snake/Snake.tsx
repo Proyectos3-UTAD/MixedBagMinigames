@@ -1,36 +1,58 @@
-import {ReactElement} from "react";
+import React from "react";
+import { ReactElement } from "react";
 import SnakeHead from "./SnakeHead.tsx";
 import SnakeBody from "./SnakeBody.tsx";
 import Fruit from "../fruits/Fruit.tsx";
 import Position from "../board/Position.ts";
 import Directions from "../../../common/constants/Directions.js";
 class SnakePartPosition {
-
-    private readonly _snakePart: ReactElement;
-    private _position: string;
+	private _position: string;
 	private _direction: string;
+	private readonly _index: number;
 
-    constructor(snakePart: ReactElement, position: string, direction?: string) {
-        this._snakePart = snakePart;
-        this._position = position;
-		this._direction = direction;
-    }
-
-    set position(position: string) {
-        this._position = position;
-    }
-
-	set direction(direction: string){
+	constructor(position: string, index: number, direction?: string) {
+		this._position = position;
+		this._index = index;
 		this._direction = direction;
 	}
 
-    get position(): string {
-        return this._position;
-    }
+	set position(position: string) {
+		this._position = position;
+	}
 
-    get snakePart(): ReactElement {
-        return this._snakePart
-    }
+	set direction(direction: string) {
+		this._direction = direction;
+	}
+
+	get position(): string {
+		return this._position;
+	}
+
+	get snakePart(): ReactElement {
+
+		let dir: string;
+
+		switch (this._direction) {
+			case Directions.DOWN:
+				dir = "snake-down";
+				break;
+			case Directions.UP:
+				dir = "snake-up";
+				break;
+			case Directions.LEFT:
+				dir = "snake-left";
+				break;
+			case Directions.RIGHT:
+				dir = "snake-right";
+				break;
+		}
+		if (this._index === 0) {
+			return <SnakeHead direction={dir} />;
+		}
+		else {
+			return <SnakeBody direction={dir} />
+		}
+	}
 
 	get direction(): string {
 		return this._direction;
@@ -41,131 +63,136 @@ class SnakePartPosition {
  */
 class Snake {
 
-    private readonly _snakeBody: Array<SnakePartPosition>;
-    private _growthLeft: number;
-    private _collided: boolean;
-    private _positionToClean: string;
+	private readonly _snakeBody: Array<SnakePartPosition>;
+	private _growthLeft: number;
+	private _collided: boolean;
+	private _positionToClean: string;
+	private _size: number;
 
-    constructor(headPosition: string) {
+	constructor(headPosition: string) {
 
-        this._snakeBody = new Array<SnakePartPosition>();
+		this._snakeBody = new Array<SnakePartPosition>();
 
-        this._growthLeft = 0;
+		this._growthLeft = 0;
 
-        this._collided = false;
+		this._collided = false;
 
-        this._createHead(headPosition);
+		this._size = 0;
 
-    }
+		this._createHead(headPosition);
 
-    _createHead(headPosition: string) {
-        this._snakeBody.push(new SnakePartPosition(<SnakeHead/>, headPosition, Directions.DOWN));
-    }
+	}
 
-    addGrowth(): void {
-        this._growthLeft += 1;
-    }
+	_createHead(headPosition: string) {
+		this._snakeBody.push(new SnakePartPosition(headPosition, this._size, Directions.DOWN));
+		this._size++;
+	}
 
-    grow(bodyPartPosition: string, direction:string): void {
-        this._snakeBody.push(new SnakePartPosition(<SnakeBody/>, bodyPartPosition, direction));
-        this._growthLeft--;
-    }
+	addGrowth(): void {
+		this._growthLeft += 1;
+	}
 
-    moveSnake(inputDirection) {
+	grow(bodyPartPosition: string, direction: string): void {
+		this._snakeBody.push(new SnakePartPosition(bodyPartPosition, this._size, direction));
+		this._size++;
+		this._growthLeft--;
+	}
 
-        let nextPos: Position = Position.parsePositionFromString(this._snakeBody[0].position).getNextPosition(inputDirection);
+	moveSnake(inputDirection) {
+
+		let nextPos: Position = Position.parsePositionFromString(this._snakeBody[0].position).getNextPosition(inputDirection);
 
 		let nextDir: string = inputDirection;
 
-        let tempPos: Position;
+		let tempPos: Position;
 
 		let tempDir: string;
 
-        this._snakeBody.forEach((bodyPart) => {
+		this._snakeBody.forEach((bodyPart) => {
 
-            tempPos = Position.parsePositionFromString(bodyPart.position);
+			tempPos = Position.parsePositionFromString(bodyPart.position);
 			tempDir = bodyPart.direction;
-            bodyPart.position = nextPos.toString();
+			bodyPart.position = nextPos.toString();
 			bodyPart.direction = nextDir;
-            nextPos = tempPos;
+			nextPos = tempPos;
 			nextDir = tempDir;
 
-        });
+		});
 
-        if (this.growthLeft) {
+		if (this.growthLeft) {
 
-            this.grow(nextPos.toString(), nextDir);
+			this.grow(nextPos.toString(), nextDir);
 
-        } else {
-            this.positionToClean = nextPos.toString();
-        }
-    }
+		} else {
+			this.positionToClean = nextPos.toString();
+		}
+	}
 
-    get positionToClean(): string {
-        return this._positionToClean;
-    }
+	get positionToClean(): string {
+		return this._positionToClean;
+	}
 
-    set positionToClean(value: string) {
-        this._positionToClean = value;
-    }
+	set positionToClean(value: string) {
+		this._positionToClean = value;
+	}
 
-    placeSnake(boardContents: Map<string, ReactElement>): void {
+	placeSnake(boardContents: Map<string, ReactElement>): void {
 
-        let isHead = true;
+		let isHead = true;
 
-        if (this.positionToClean !== null) {
+		if (this.positionToClean !== null) {
 
-            boardContents.set(this.positionToClean, null);
-            this.positionToClean = null;
+			boardContents.set(this.positionToClean, null);
+			this.positionToClean = null;
 
-        }
+		}
 
-        this._snakeBody.forEach((bodyPart) => {
+		this._snakeBody.forEach((bodyPart) => {
 
-            if (isHead) {
+			if (isHead) {
 
-                if (boardContents.has(bodyPart.position)) {
+				if (boardContents.has(bodyPart.position)) {
 
-                    const tileContents = boardContents.get(bodyPart.position);
+					const tileContents = boardContents.get(bodyPart.position);
 
-                    if (tileContents?.type === Fruit) {
+					if (tileContents?.type === Fruit) {
 
-                        this.addGrowth();
+						this.addGrowth();
 
-                    } else if (tileContents) {
+					} else if (tileContents) {
 
-                        this.collided = true;
+						this.collided = true;
 
-                    }
+					}
 
-                } else {
+				} else {
 
-                    this.collided = true;
+					this.collided = true;
 
-                }
+				}
 
 
-                isHead = false;
+				isHead = false;
 
-            }
+			}
 
-            boardContents.set(bodyPart.position, bodyPart.snakePart);
+			boardContents.set(bodyPart.position, bodyPart.snakePart);
 
-        })
+		})
 
-    }
+	}
 
-    get collided(): boolean {
-        return this._collided;
-    }
+	get collided(): boolean {
+		return this._collided;
+	}
 
-    set collided(value: boolean) {
-        this._collided = value;
-    }
+	set collided(value: boolean) {
+		this._collided = value;
+	}
 
-    get growthLeft(): number {
-        return this._growthLeft;
-    }
+	get growthLeft(): number {
+		return this._growthLeft;
+	}
 }
 
 export default Snake;
