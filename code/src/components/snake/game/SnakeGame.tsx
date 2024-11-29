@@ -23,8 +23,8 @@ import InputHandler from "../../common/utils/InputHandler";
 import Position from "../game/board/Position.ts";
 import Snake from "../game/snake/Snake.tsx";
 import Timer from "../../common/Timer";
-import { Link } from 'react-router-dom';
-
+import GameWon from '../GameWon.tsx';
+import GameLost from '../GameLost.tsx';
 
 function SnakeGame({ gameSettings }): ReactElement {
 
@@ -32,10 +32,13 @@ function SnakeGame({ gameSettings }): ReactElement {
 	const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
 	const [score, setScore] = useState(0);
 	const [startTime,] = useState(new Date().getTime());
+	const [victory, setVictory] = useState(false);
+	const [defeat, setDefeat] = useState(false);
 
 	const boardContentsRef = useRef(boardContents);
 	const inputDirectionRef = useRef(inputDirection);
 	const scoreRef = useRef(score);
+	const gamePaused = useRef(false)
 
 	useEffect(() => {
 
@@ -131,6 +134,9 @@ function SnakeGame({ gameSettings }): ReactElement {
 	// Normal game actions
 	const gameTick = () => {
 
+		if (gamePaused.current)
+			return;
+
 		const tickBoardContents: Map<string, ReactElement | null> = new Map<string, ReactElement | null>(boardContentsRef.current);
 
 		if (snake.growthLeft > 0) {
@@ -141,7 +147,8 @@ function SnakeGame({ gameSettings }): ReactElement {
 		snake.moveSnake(inputDirectionRef.current);
 
 		if (snake.collided) {
-			// setModalVisible(true)
+			gamePaused.current = true;
+			setDefeat(true);
 		}
 
 		snake.placeSnake(tickBoardContents);
@@ -164,21 +171,24 @@ function SnakeGame({ gameSettings }): ReactElement {
 	}, []);
 
 	return (
-
-		<div className={"snake-game-board"}>
-			<div className={"snake-game-display"}>
-				<div className={"snake-game-summary"}>
-					<label className={"snake-score-display"}>Score: {scoreRef.current}</label>
-					<Timer className={"snake-time-display"} startDate={startTime} />
+		<>
+			<div className={"snake-game-board"}>
+				<div className={"snake-game-display"}>
+					<div className={"snake-game-summary"}>
+						<label className={"snake-score-display"}>Score: {scoreRef.current}</label>
+						<Timer className={"snake-time-display"} startDate={startTime} />
+					</div>
+					<Board
+						boardContents={boardContents}
+						boardDimensions={gameSettings.boardDimensions}
+						boardColors={gameSettings.boardColors}
+					/>
 				</div>
-				<Board
-					boardContents={boardContents}
-					boardDimensions={gameSettings.boardDimensions}
-					boardColors={gameSettings.boardColors}
-				/>
-			</div>
 
-		</div>
+			</div>
+			{victory && (<GameWon />)}
+			{defeat && (<GameLost />)}
+		</>
 	);
 }
 
