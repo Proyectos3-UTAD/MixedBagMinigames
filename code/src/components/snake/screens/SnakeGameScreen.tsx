@@ -14,7 +14,7 @@ import SnakeGame from '../game/SnakeGame.tsx';
 /**
  * Modules
  */
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import GameSettings from '../settings/GameSettings.ts';
 
 
@@ -26,8 +26,8 @@ function SnakeGameScreen(): ReactElement {
 
 	return (
 		<div>
-			<HomeMenuButton classname={""} />
-			<SnakeHomeButton className={""}/>
+			<HomeMenuButton classname={"snake-common-button snake-home-button"} />
+			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
 
 			{/* {
 				input ?

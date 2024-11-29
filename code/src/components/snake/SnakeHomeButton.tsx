@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
  * @returns {JSX.Element} The button to return to the snake minigame main screen
  * @constructor
  */
-function SnakeHomeButton({className}): ReactElement {
+function SnakeHomeButton({ className }): ReactElement {
 
 
 	return (
 		<Link to={'/Snake'} className={className}>
-			<p>Snake</p>
+			Snake
 		</Link>
 	);
 
