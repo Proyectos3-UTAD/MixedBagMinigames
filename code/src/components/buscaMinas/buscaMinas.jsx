@@ -19,6 +19,7 @@ function BuscaMinas({ screenChanger }) {
                 newRow.push({
                     revealed: false,
                     mine: false,
+                    flagged: false, // Nueva propiedad para las banderas
                     adjacentMines: 0,
                 });
             }
@@ -26,6 +27,7 @@ function BuscaMinas({ screenChanger }) {
         }
         return newGrid;
     };
+    
 
     const placeMines = (grid) => {
         let minesPlaced = 0;
@@ -106,6 +108,26 @@ function BuscaMinas({ screenChanger }) {
         }
     };
 
+    const handleCellRightClick = (e, row, col) => {
+        e.preventDefault(); // Evita el menú contextual por defecto del clic derecho.
+    
+        if (gameOver || gameWon) return;
+    
+        let newGrid = [...grid];
+        let cell = newGrid[row][col];
+    
+        if (cell.revealed) return; // No permitir marcar celdas ya reveladas.
+    
+        // Alternar el estado de bandera
+        cell.flagged = !cell.flagged;
+    
+        // Actualizar el contador de minas restantes
+        setMinesLeft((prev) => (cell.flagged ? prev - 1 : prev + 1));
+    
+        setGrid(newGrid);
+    };
+    
+
     const revealAdjacentCells = (grid, row, col) => {
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
@@ -164,6 +186,8 @@ function BuscaMinas({ screenChanger }) {
         initializeGame();
     };
 
+    
+    
     return (
         <div>
             <h1>BuscaMinas</h1>
@@ -186,13 +210,10 @@ function BuscaMinas({ screenChanger }) {
                             key={`${rowIndex}-${colIndex}`}
                             className={`cell ${cell.revealed ? "revealed" : ""}`}
                             onClick={() => handleCellClick(rowIndex, colIndex)}
+                            onContextMenu={(e) => handleCellRightClick(e, rowIndex, colIndex)} // Clic derecho
+
                         >
-                            {cell.revealed &&
-                                (cell.mine
-                                    ? "💣"
-                                    : cell.adjacentMines > 0
-                                    ? cell.adjacentMines
-                                    : "")}
+                            {cell.flagged ? "🚩" : cell.revealed && (cell.mine ? "💣" : cell.adjacentMines > 0 ? cell.adjacentMines : "")}
                         </button>
                     ))
                 )}
