@@ -1,41 +1,76 @@
-.snake-game-screen {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    column-gap: 1rem;
+.snake-game-board {
+	position: absolute;
+	height: 100vh;
+	/* display: grid;
+	grid-template-columns: repeat(3, auto);
+	column-gap: 1rem; */
 }
 
 .snake-game-display {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
-    background-color: #398a30;
-    border-radius: 15px;
-    margin: 5% auto;
+	position: relative;
+	left: 29vw;
+	top: 3vh;
 
-
+	width: 42vw;
+	height: 90vh;
+	display: grid;
+	grid-template-rows: repeat(2, auto);
+	background-color: #398a30;
+	border-radius: 15px;
 }
 
 .snake-game-summary {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 1rem;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 1rem;
 
 }
 
 .snake-score-display {
-    width: 90%;
-    background-color: #cdb229;
-    text-align: center;
-    border-radius: 15px;
-    margin: auto;
+	width: 18vw;
+	background-color: #cdb229;
+	text-align: center;
+	border-radius: 15px;
+	margin: auto;
+	font-size: 1.2em;
+	font-weight: bold;
+
 }
 
 .snake-time-display {
-    width: 90%;
-    background-color: #26c58b;
-    text-align: center;
-    border-radius: 15px;
-    margin: 3% auto;
+	width: 18vw;
+	background-color: #26c58b;
+	text-align: center;
+	border-radius: 15px;
+	margin: auto;
+	font-size: 1.2em;
+	font-weight: bold;
+
+}
+
+.snake-common-button {
+	position: absolute;
+	z-index: 1;
+	text-decoration: none;
+	color: white;
+	background-color: #26c58b;
+	width: 10vw;
+	height: 5vh;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.snake-home-button {
+	top: 9%;
+	left: 1vw;
+
+}
+
+.snake-menu-button {
+	top: 2vh;
+	left: 1vw;
 
 }

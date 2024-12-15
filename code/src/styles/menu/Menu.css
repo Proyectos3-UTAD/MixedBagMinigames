@@ -1,4 +1,185 @@
 .Menu {
+    background-image: url('/src/static/images/menu/background-image.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    position: relative;
+    width: 100vw;
+    min-height: 100vh; /* Permite que el contenedor crezca si el contenido es mayor que la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Habilita el scroll vertical cuando el contenido sobrepasa la altura de la ventana */
+}
+
+/* Efecto de "estrellas" con mayor visibilidad en el fondo */
+.Menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 1%, rgba(0, 0, 0, 0.9) 50%); /* Fondo de estrellas con puntos brillantes */
+    opacity: 0.6; /* Aumentamos la visibilidad de las estrellas */
+    z-index: 0;
+    pointer-events: none;
+    background-size: 5px 5px; /* Estrellas más pequeñas y dispersas */
+}
+
+@font-face {
+
+    font-family: 'ArcadeI';
+    src: url('/src/static/fonts/ARCADE_I.TTF') format('truetype'); /* Ruta a la fuente */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Título con borde neón, tamaño ajustado, y animación de cambio de color */
+.MenuTitle {
+    text-align: center;
+    position: relative;
+    top: 5%;
+    color: #00FF00; /* Color inicial de texto en verde neón */
+    background-color: transparent;
+    width: 60%; /* Aumentamos el tamaño del contenedor */
+    height: auto;
+    padding: 20px 0; /* Añadimos más espacio vertical */
+    font-size: 4em; /* Tamaño mayor para el título */
+    font-family: 'ArcadeI', sans-serif; /* Aplica la fuente personalizada */
+    text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00; /* Efecto de texto neón */
+    z-index: 1;
+    border: 5px solid transparent; /* Bordes transparentes para que se vea la animación */
+    border-radius: 20px; /* Redondeo de los bordes del título */
+    box-sizing: border-box;
+    animation: neonBorder 2s ease-in-out infinite alternate;
+    padding: 20px; /* Espacio adicional para que el borde se vea bien */
+    animation: neonTextColor 2s ease-in-out infinite alternate; /* Animación para cambiar el color del texto */
+}
+
+/* Animación para el borde de neón (solo para el título) */
+@keyframes neonBorder {
+    0% {
+        border-color: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    }
+    50% {
+        border-color: #00ff00;
+        box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+    }
+    100% {
+        border-color: #00ffff;
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    }
+}
+
+/* Animación para cambiar el color del texto del título (coincide con el borde) */
+@keyframes neonTextColor {
+    0% {
+        color: #ff00ff;
+    }
+    50% {
+        color: #00ff00;
+    }
+    100% {
+        color: #00ffff;
+    }
+}
+
+/* Contenedor de las miniaturas de los juegos */
+.GameDisplayTable {
+    margin-top: 10vh; /* Ajustamos la distancia desde el título para que no se corten las miniaturas */
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    grid-auto-rows: minmax(250px, 250px);
+    z-index: 1;
+    padding-bottom: 10vh; /* Agregamos algo de espacio al final para que las miniaturas no se corten */
+}
+
+/* Miniaturas de los juegos con borde de neón */
+.GameMiniature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 2em;
+    font-weight: bold;
+    color: rgba(154, 205, 50, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 5px solid transparent;
+    padding: 15px;
+    box-sizing: border-box;
+    animation: neonBorderMiniatures 2s ease-in-out infinite alternate;
+}
+
+/* Animación para el borde de neón en las miniaturas */
+@keyframes neonBorderMiniatures {
+    0% {
+        border-color: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    }
+    50% {
+        border-color: #00ff00;
+        box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+    }
+    100% {
+        border-color: #00ffff;
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    }
+}
+
+/* Efecto hover y borde de neón en las miniaturas */
+.GameMiniature:hover {
+    transform: scale(1.05);
+    background-color: #61dafb;
+    background-image: none;
+    color: #8338dd;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Fondo de miniaturas con imágenes */
+.ImagePong {
+    background-image: url(/src/static/images/menu/pongMiniature.png);
+}
+
+.ImageAtariBreakout {
+    background-image: url(/src/static/images/menu/atariMiniature.jpg);
+}
+
+.ImageSnake {
+    background-image: url(/src/static/images/menu/snakeMiniature.png);
+}
+
+.ImageSpaceInvaders {
+    background-image: url(/src/static/images/menu/spaceinvadersMiniature.png);
+}
+
+.ImageMineSweeper {
+    background-image: url(/src/static/images/menu/minesweeperMiniature.png);
+}
+
+.ImagePacman {
+    background-image: url(/src/static/images/menu/pacmanMiniature.png);
+}
+
+
+
+
+/*
+.Menu {
     background-color: #7b9e91;
     width: 100vw;
     height: 100vh;
@@ -28,3 +209,4 @@
     gap: 30px;
     grid-auto-rows: minmax(250px, 250px);
 }
+*/
