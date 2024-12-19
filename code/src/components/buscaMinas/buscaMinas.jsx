@@ -165,8 +165,8 @@ function BuscaMinas() {
     };
 
     return (
-        <div>
-            <h1>BuscaMinas</h1>
+        <div id="mainFrameMine">
+            <h1 id="mineTitle">BuscaMinas</h1>
             <div className="game-info">
                 <div className="counter">{minesLeft}</div>
                 <button className="reset-button" onClick={resetGame}>
