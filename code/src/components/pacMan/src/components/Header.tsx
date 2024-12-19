@@ -37,6 +37,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <span className="left title">PACMAN</span>
+
       <div className="right score">
 
       <div className="menu">
