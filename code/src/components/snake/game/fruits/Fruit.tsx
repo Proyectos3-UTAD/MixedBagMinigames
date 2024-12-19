@@ -16,10 +16,10 @@ import {ReactElement} from "react";
 function Fruit(): ReactElement {
 
     return (
-        <div className={"Fruit"}>
 
-        </div>
-    )
+		<div className={"fruit"}/>
+
+    );
 
 }
 

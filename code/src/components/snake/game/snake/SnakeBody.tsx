@@ -4,10 +4,10 @@ import {ReactElement} from "react";
  * Snale body component.
  * @returns 
  */
-function SnakeBody(): ReactElement {
+function SnakeBody({direction}): ReactElement {
 
     return (
-        <div className={"snake-body-part"}></div>
+        <div className={`snake-body-part ${direction}`}></div>
     );
 
 }
