@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from "./menu/Menu";
 import SnakeHomeScreen from "./snake/screens/SnakeHomeScreen";
-import SnakeGameScreen from "./snake/screens/SnakeGameScreen";
-import SnakeScoreScreen from "./snake/screens/SnakeScoreScreen";
+import {SnakeGameMode1Screen,SnakeGameMode2Screen,SnakeGameMode3Screen} from "./snake/screens/SnakeGameScreen";
 import BuscaMinas from "./buscaMinas/buscaMinas";
 import SpaceInvaders from "./spaceInvaders/space-invader";
 import Pong from "./pong/Pong";
@@ -21,8 +20,9 @@ function App() {
                     <Route index element={<Menu />} />
                     
 					<Route path="/Snake" element={<SnakeHomeScreen/>}/>
-                    <Route path="/Snake/Game" element={<SnakeGameScreen/>}/>
-                    <Route path="/Snake/Scores" element={<SnakeScoreScreen/>}/>
+                    <Route path="/Snake/Mode1" element={<SnakeGameMode1Screen/>}/>
+                    <Route path="/Snake/Mode2" element={<SnakeGameMode2Screen/>}/>
+                    <Route path="/Snake/Mode3" element={<SnakeGameMode3Screen/>}/>
 
                     <Route path="/Pacman" element={<PacManGame />} /> {/* Nueva integración */}
 

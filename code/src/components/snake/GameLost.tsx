@@ -8,7 +8,7 @@ export default function GameLost() {
 			<div className='snake-defeat-gif' />
 			<div className='snake-end-screen-button-holder'>
 
-				<Link reloadDocument to={"/Snake/Game"} className='snake-end-game-link'> Retry</Link>
+				{/* <Link reloadDocument to={"/Snake/Game"} className='snake-end-game-link'> Retry</Link> */}
 				<Link to={"/"} className='snake-end-game-link'> Exit</Link>
 
 			</div>
