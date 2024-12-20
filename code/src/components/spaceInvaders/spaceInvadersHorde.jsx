@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import "../../styles/spaceInvaders/style.css";
 import { useInterval } from "./useInterval";
 import {
@@ -11,7 +12,9 @@ import {
 	START_POSITION,
 } from "./constants";
 
-const SpaceInvadersHorde = () => {
+export default function SpaceInvadersHorde() {
+
+	// Estados
 	const [player, setPlayer] = useState({
 		x: START_POSITION.x,
 		y: CANVAS_HEIGHT - 60,
@@ -25,14 +28,21 @@ const SpaceInvadersHorde = () => {
 	const [gameOver, setGameOver] = useState(false);
 	const [level, setLevel] = useState(1); // Nivel inicial
 	const [enemySpeed, setEnemySpeed] = useState(GAME_SPEED / 8); // Velocidad inicial de los enemigos
+	const levelRef = useRef(level)
 
 	// Configuración inicial de los enemigos (4 filas x 5 columnas)
 	const generateEnemies = () => {
 		const rows = 4;
-		const cols = 5;
+		const cols = 8;
 		const initialEnemies = [];
 		for (let row = 0; row < rows; row++) {
 			for (let col = 0; col < cols; col++) {
+
+
+				if ((row * 4 + col) === levelRef.current) {
+					return initialEnemies;
+				}
+
 				initialEnemies.push({
 					x: 100 + col * 80,
 					y: 50 + row * 60,
@@ -42,12 +52,6 @@ const SpaceInvadersHorde = () => {
 		}
 		return initialEnemies;
 	};
-
-	// Inicializar enemigos al comienzo del juego
-	useEffect(() => {
-		setEnemies(generateEnemies());
-		setLevel(1); // Asegurar que el nivel comience en 1
-	}, []);
 
 	// Mover jugador
 	const movePlayer = (e) => {
@@ -109,7 +113,7 @@ const SpaceInvadersHorde = () => {
 		} else {
 			setEnemies(updatedEnemies);
 		}
-	}, GAME_SPEED * 5); // Movimiento lento al inicio
+	}, ((GAME_SPEED * 5) - levelRef.current * 2)); // Movimiento lento al inicio
 
 	// Disparos aleatorios de los enemigos
 	useInterval(() => {
@@ -175,9 +179,11 @@ const SpaceInvadersHorde = () => {
 	// Cuando todos los enemigos son eliminados
 	useEffect(() => {
 		if (gameStarted && enemies.length === 0 && !gameOver) {
+			levelRef.current = level + 1;
+			setEnemyBullets([]);
 			setLevel((prev) => prev + 1); // Incrementar nivel
 			setEnemySpeed((prev) => prev + 0.5); // Incrementar velocidad
-			setTimeout(() => setEnemies(generateEnemies()), 2000); // Regenerar enemigos tras 2 segundos
+			setTimeout(() => setEnemies(generateEnemies()), 100); // Regenerar enemigos tras 2 segundos
 		}
 	}, [enemies, gameOver]);
 
@@ -191,6 +197,7 @@ const SpaceInvadersHorde = () => {
 
 	// Reiniciar juego
 	const resetGame = () => {
+		levelRef.current = 1;
 		setPlayer({ x: START_POSITION.x, y: CANVAS_HEIGHT - 60 });
 		setBullets([]);
 		setEnemyBullets([]);
@@ -201,6 +208,12 @@ const SpaceInvadersHorde = () => {
 		setEnemySpeed(GAME_SPEED / 8); // Reiniciar velocidad
 		setGameStarted(true);
 	};
+
+	useEffect(
+		() => {
+			resetGame();
+		}, []
+	);
 
 	if (gameOver) {
 		return (
@@ -276,5 +289,3 @@ const SpaceInvadersHorde = () => {
 		</div>
 	);
 };
-
-export default SpaceInvadersHorde;
