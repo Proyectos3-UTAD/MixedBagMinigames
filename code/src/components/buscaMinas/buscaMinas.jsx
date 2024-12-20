@@ -227,8 +227,8 @@ function BuscaMinas({ screenChanger }) {
     };
 
     return (
-        <div>
-            <h1>BuscaMinas</h1>
+        <div id="mainFrameMine">
+            <h1 id="mineTitle">BuscaMinas</h1>
             <div className="game-info">
                 <div className="counter">Minas restantes: {minesLeft}</div>
                 <div className="timer">Tiempo restante: {timeLeft} s</div>

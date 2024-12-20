@@ -16,30 +16,51 @@ import SnakeGame from '../game/SnakeGame.tsx';
  */
 import { ReactElement } from "react";
 import GameSettings from '../settings/GameSettings.ts';
+import BoardDimensions from '../settings/BoardDimensions.ts';
+import BoardColors from '../settings/BoardColors.ts';
+import FruitValues from '../settings/FruitValues.ts';
+import SnakeValues from '../settings/SnakeValues.ts';
 
 
-function SnakeGameScreen(): ReactElement {
-
-	// const [input,] = useState(useLocation().state || null);
-
-	// console.log("input game screen", typeof (input.gameSettings as GameSettings))
+function SnakeGameMode1Screen(): ReactElement {
 
 	return (
 		<div>
 			<HomeMenuButton className={"snake-common-button snake-home-button"} />
 			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
-
-			{/* {
-				input ?
-					<SnakeGame gameSettings={(input.gameSettings as GameSettings)} />
-					: <SnakeGame gameSettings={new GameSettings()} />
-
-			} */}
-
 			<SnakeGame gameSettings={new GameSettings()} />
 
 		</div>
 	);
 }
+function SnakeGameMode2Screen(): ReactElement {
 
-export default SnakeGameScreen;
+	const board:BoardDimensions =	new BoardDimensions(18, 20)
+
+	return (
+		<div>
+			<HomeMenuButton className={"snake-common-button snake-home-button"} />
+			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
+			<SnakeGame gameSettings={new GameSettings(board)} />
+
+		</div>
+	);
+}
+function SnakeGameMode3Screen(): ReactElement {
+
+	return (
+		<div>
+			<HomeMenuButton className={"snake-common-button snake-home-button"} />
+			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
+			<SnakeGame gameSettings={new GameSettings(
+				new BoardDimensions(9, 10),
+				new BoardColors("snake-LightSquare", "snake-DarkSquare"),
+				new FruitValues(1),
+				new SnakeValues(75)
+			)} />
+
+		</div>
+	);
+}
+
+export {SnakeGameMode1Screen,SnakeGameMode2Screen,SnakeGameMode3Screen};
