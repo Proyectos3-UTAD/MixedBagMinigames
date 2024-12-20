@@ -198,6 +198,11 @@ const CenterContainer = styled.div`
   background-color: ${colors.color2};
   color: ${colors.color3};
   padding: 20px;
+
+  border-radius: 10px;
+  border: 15px black double;
+  box-shadow: 0 0 50px orange;
+
   button {
     cursor: pointer;
   }
@@ -228,6 +233,7 @@ const StyledButton = styled.button`
   color: ${colors.color2};
   border: 1px ${colors.color3} solid;
   cursor: pointer;
+  border-radius: 10px;
 
   :hover {
     background-color: ${colors.color2};

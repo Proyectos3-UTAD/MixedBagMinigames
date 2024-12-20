@@ -17,15 +17,28 @@
 	background-origin: content-box;
 	background-clip: content-box;
 	align-content: normal;
+}
 
+.snake-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+	background: radial-gradient(circle, rgba(149, 111, 7, 0.703) 1%, rgba(0, 0, 0, 0.9) 50%); /* Fondo de estrellas con puntos brillantes */
+    opacity: 0.6; /* Aumentamos la visibilidad de las estrellas */
+    pointer-events: none;
+    background-size: 5px 5px; /* Estrellas más pequeñas y dispersas */
 }
 
 
 
 .snake-menu-title {
 
-	color: greenyellow;
-	background-color: burlywood;
+	color: rgb(65, 255, 87);
+	background-color: rgb(183, 112, 21);
 
 	position: relative;
 	width: 20vw;
@@ -40,6 +53,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	border: 8px darkgreen solid;
+	box-shadow: 0 0 50px rgb(46, 255, 27);
 
 }
 
@@ -56,6 +72,9 @@
 	display: grid;
 	border-radius: 10px;
 
+	border: 8px darkgreen solid;
+	box-shadow: 0 0 50px rgb(46, 255, 27);
+
 }
 
 .snake-menu-option {
@@ -71,11 +90,13 @@
 	align-items: center;
 
 	text-decoration: none;
-	color: #2d612da7;
+	color: #005800a7;
 	background-color: #86a89da7;
 	border-radius: 10px;
 	font-weight: bold;
 	font-size: 3em;
+
+	border: 1.5px darkgreen solid;
 }
 
 .snake-menu-option:hover {
@@ -86,7 +107,7 @@
 
 .snake-menu-home-option {
 
-	color: gray;
+	color: rgb(101, 101, 101);
 
 }
 
