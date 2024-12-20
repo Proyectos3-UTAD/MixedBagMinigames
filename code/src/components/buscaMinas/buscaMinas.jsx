@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HomeMenuButton from "../common/HomeMenuButton";
 import '../../styles/buscaMinas/buscaMinas.css';
 
+
 function BuscaMinas({ screenChanger }) {
     const [rows, setRows] = useState(4);
     const [cols, setCols] = useState(4);
@@ -287,7 +288,7 @@ function BuscaMinas({ screenChanger }) {
                     <button onClick={resetGame}>Reiniciar</button>
                 </div>
             )}
-            <HomeMenuButton screenChanger={screenChanger} />
+            <HomeMenuButton />
         </div>
     );
 }

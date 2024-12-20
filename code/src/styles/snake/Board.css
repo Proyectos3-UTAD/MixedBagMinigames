@@ -1,4 +1,5 @@
 .snake-Board {
+	position: relative;
     display: grid;
     width: 80vh;
     height: 80vh;
