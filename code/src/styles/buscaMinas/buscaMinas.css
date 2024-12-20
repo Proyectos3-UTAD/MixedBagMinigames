@@ -99,3 +99,8 @@ h1 {
   font-size: 1.2rem;
   cursor: pointer;
 }
+.cell.flagged {
+  background-color: #ffd700;
+  color: red;
+}
+
