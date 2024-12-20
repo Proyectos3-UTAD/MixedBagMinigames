@@ -71,6 +71,10 @@ function SnakeHomeScreen(): ReactElement {
 					<p>Gran tablero</p>
 				</Link>
 
+				<Link to={'/Snake/Mode4'} className="snake-menu-option">
+					<p>Pequeño tablero</p>
+				</Link>
+
 				<Link to={'/Snake/Mode3'} className="snake-menu-option">
 					<p>Velocidad</p>
 				</Link>
