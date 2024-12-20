@@ -28,7 +28,7 @@ function SnakeGameMode1Screen(): ReactElement {
 		<div>
 			<HomeMenuButton className={"snake-common-button snake-home-button"} />
 			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
-			<SnakeGame gameSettings={new GameSettings()} />
+			<SnakeGame gameSettings={new GameSettings()} link={"/Snake/Mode1"}/>
 
 		</div>
 	);
@@ -41,11 +41,12 @@ function SnakeGameMode2Screen(): ReactElement {
 		<div>
 			<HomeMenuButton className={"snake-common-button snake-home-button"} />
 			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
-			<SnakeGame gameSettings={new GameSettings(board)} />
+			<SnakeGame gameSettings={new GameSettings(board)} link={"/Snake/Mode2"}/>
 
 		</div>
 	);
 }
+
 function SnakeGameMode3Screen(): ReactElement {
 
 	return (
@@ -57,10 +58,26 @@ function SnakeGameMode3Screen(): ReactElement {
 				new BoardColors("snake-LightSquare", "snake-DarkSquare"),
 				new FruitValues(1),
 				new SnakeValues(75)
-			)} />
+			)}
+			link={"/Snake/Mode3"}
+			 />
 
 		</div>
 	);
 }
 
-export {SnakeGameMode1Screen,SnakeGameMode2Screen,SnakeGameMode3Screen};
+function SnakeGameMode4Screen(): ReactElement {
+
+	const board:BoardDimensions =	new BoardDimensions(5,5)
+
+	return (
+		<div>
+			<HomeMenuButton className={"snake-common-button snake-home-button"} />
+			<SnakeHomeButton className={"snake-common-button snake-menu-button"}/>
+			<SnakeGame gameSettings={new GameSettings(board)} link={"/Snake/Mode4"}/>
+
+		</div>
+	);
+}
+
+export {SnakeGameMode1Screen,SnakeGameMode2Screen,SnakeGameMode3Screen, SnakeGameMode4Screen};
