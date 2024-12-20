@@ -14,6 +14,9 @@ function SpaceInvadersMenu() {
 				<Link className={"space-invaders-menu-button"} to={"/SpaceInvaders"}>
 					Speed
 				</Link>
+				<Link className={"space-invaders-menu-button"} to={"/SpaceInvadersHorde"}>
+					Horde
+				</Link>
 				<HomeMenuButton className={"space-invaders-menu-button"}/>
 			</div>
 		</div>

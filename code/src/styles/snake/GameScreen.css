@@ -1,6 +1,14 @@
 .snake-game-board {
 	position: absolute;
 	height: 100vh;
+	width: 100vw;
+	
+	background: radial-gradient(circle, rgba(0, 255, 17, 0.703) 1%, rgba(0, 0, 0, 0.9) 50%); /* Fondo de estrellas con puntos brillantes */
+    opacity: 0.99; /* Aumentamos la visibilidad de las estrellas */
+    pointer-events: none;
+    background-size: 8px 8px; /* Estrellas más pequeñas y dispersas */
+
+
 	/* display: grid;
 	grid-template-columns: repeat(3, auto);
 	column-gap: 1rem; */
@@ -17,6 +25,8 @@
 	grid-template-rows: repeat(2, auto);
 	background-color: #398a30;
 	border-radius: 15px;
+	border: 8px darkgreen solid;
+	box-shadow: 0 0 35px rgb(46, 255, 27);
 }
 
 .snake-game-summary {
@@ -35,6 +45,7 @@
 	margin: auto;
 	font-size: 1.2em;
 	font-weight: bold;
+	border: 5px darkgreen solid;
 
 }
 
@@ -46,6 +57,7 @@
 	margin: auto;
 	font-size: 1.2em;
 	font-weight: bold;
+	border: 5px darkgreen solid;
 
 }
 
@@ -53,14 +65,18 @@
 	position: absolute;
 	z-index: 1;
 	text-decoration: none;
-	color: white;
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
 	background-color: #26c58b;
 	width: 10vw;
 	height: 5vh;
-	border-radius: 10px;
+	border-radius: 15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border: 5px darkgreen solid;
+	box-shadow: 0 0 25px rgb(46, 255, 27);
 }
 
 .snake-home-button {

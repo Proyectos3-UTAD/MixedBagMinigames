@@ -26,7 +26,7 @@ import Timer from "../../common/Timer";
 import GameWon from '../GameWon.tsx';
 import GameLost from '../GameLost.tsx';
 
-function SnakeGame({ gameSettings }): ReactElement {
+function SnakeGame({ gameSettings, link }): ReactElement {
 
 	const [inputDirection, setInputDirection] = useState(Directions.DOWN);
 	const [boardContents, setBoardContents] = useState(new Map<string, ReactElement | null>());
@@ -186,8 +186,8 @@ function SnakeGame({ gameSettings }): ReactElement {
 				</div>
 
 			</div>
-			{victory && (<GameWon />)}
-			{defeat && (<GameLost />)}
+			{victory && (<GameWon link={link}/>)}
+			{defeat && (<GameLost link={link}/>)}
 		</>
 	);
 }

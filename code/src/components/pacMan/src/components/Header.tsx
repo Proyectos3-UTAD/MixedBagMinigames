@@ -37,6 +37,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <span className="left title">PACMAN</span>
+
       <div className="right score">
 
       <div className="menu">
@@ -44,7 +45,7 @@ const Header = () => {
         </div>
 
         <div>
-          <strong>Puntuación: </strong>
+          <strong> Puntuación: </strong>
           <span className="points">
             {points} / {foodAmount}
           </span>
@@ -54,8 +55,7 @@ const Header = () => {
         </div>
       
       </div>
-    </StyledHeader>
-  );
+    </StyledHeader>  );
 };
 
 const StyledHeader = styled.div`
@@ -65,11 +65,14 @@ const StyledHeader = styled.div`
   background-color: ${colors.color3};
   color: ${colors.color2};
   padding: 16px;
+
+  
+
 `;
 
 
 const Title = styled.div`
-  font-size: 800px;
+  font-size: 40px;
   text-align: center;
   margin-bottom: 10px;
 `;
@@ -94,7 +97,8 @@ const StatsContainer = styled.div`
 
 const MenuButton = styled.button`
   text-align: center;
-  padding: 2px 8px;
+  padding: 2px 50px;
+  margin: 0px 10px;
   font-size: 15px;
   background-color: ${colors.color1};
   color: ${colors.color2};
@@ -102,6 +106,8 @@ const MenuButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 
+  box-shadow: 0 0 50px orange;
+  
   &:hover {
     background-color: ${colors.color2};
     color: ${colors.color1};

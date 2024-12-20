@@ -95,10 +95,10 @@ const Scene = (props: SceneProps) => {
             {gameStatus === GAME_STATUS.WON ? (
               <CenterContainer>
                 <div>
-                  <strong>Congratulations :)</strong>
+                  <strong>Enhorabuena :)</strong>
                 </div>
                 <StyledButton onClick={() => restartGame()}>
-                  Play again
+                  Jugar de Nuevo
                 </StyledButton>
               </CenterContainer>
             ) : (
@@ -107,7 +107,7 @@ const Scene = (props: SceneProps) => {
                   <strong>GAME OVER :(</strong>
                 </div>
                 <StyledButton onClick={() => restartGame()}>
-                  Try Again
+                  Otra Vez
                 </StyledButton>
               </CenterContainer>
             )}
@@ -117,23 +117,23 @@ const Scene = (props: SceneProps) => {
         <OverlayContent>
           <CenterContainer>
             <div>
-              <span>Set Difficulty</span>
+              <span>Dificultad</span>
             </div>
             <div>
               <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value as Difficulty)}
               >
-                <option value={DIFFICULTY.EASY}>Easy</option>
-                <option value={DIFFICULTY.MEDIUM}>Medium</option>
-                <option value={DIFFICULTY.ADVANCED}>Advanced</option>
+                <option value={DIFFICULTY.EASY}>Fácil</option>
+                <option value={DIFFICULTY.MEDIUM}>Media</option>
+                <option value={DIFFICULTY.ADVANCED}>Avanzada</option>
               </select>
             </div>
 
             <StyledButton
               onClick={() => setGameStatus(GAME_STATUS.IN_PROGRESS)}
             >
-              Play!
+              ¡Jugar!
             </StyledButton>
           </CenterContainer>
         </OverlayContent>
@@ -198,6 +198,11 @@ const CenterContainer = styled.div`
   background-color: ${colors.color2};
   color: ${colors.color3};
   padding: 20px;
+
+  border-radius: 10px;
+  border: 15px black double;
+  box-shadow: 0 0 50px orange;
+
   button {
     cursor: pointer;
   }
@@ -217,7 +222,8 @@ const StyledScene = styled.div`
   width: calc(var(--container-width));
   background-color: ${colors.color1};
   position: relative;
-  border: 10px ${colors.color3} solid;
+  border: 10px gold double;
+  box-shadow: 0 0 50px orange;
 `;
 
 const StyledButton = styled.button`
@@ -227,6 +233,7 @@ const StyledButton = styled.button`
   color: ${colors.color2};
   border: 1px ${colors.color3} solid;
   cursor: pointer;
+  border-radius: 10px;
 
   :hover {
     background-color: ${colors.color2};

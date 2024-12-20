@@ -59,23 +59,24 @@ function SnakeHomeScreen(): ReactElement {
 			<div className="snake-menu-options">
 
 				<Link
-					to={"/Snake/Game"}
+					to={"/Snake/Mode1"}
 					state={{ gameSettings }}
 					className="snake-menu-option"
 				>
-					<p>Play</p>
+					<p>Clasico</p>
 					
 				</Link>
 
-				<p className="snake-menu-option" onClick={() => {
-					console.log("Necesito apoyo!")
-					setSettingsOpen(true)
-				}}
+				<Link to={'/Snake/Mode2'} className="snake-menu-option">
+					<p>Gran tablero</p>
+				</Link>
 
-				>Settings</p>
+				<Link to={'/Snake/Mode4'} className="snake-menu-option">
+					<p>Pequeño tablero</p>
+				</Link>
 
-				<Link to={'/Snake/Scores'} className="snake-menu-option">
-					<p>Scores</p>
+				<Link to={'/Snake/Mode3'} className="snake-menu-option">
+					<p>Velocidad</p>
 				</Link>
 
 				<HomeMenuButton className="snake-menu-option snake-menu-home-option" />

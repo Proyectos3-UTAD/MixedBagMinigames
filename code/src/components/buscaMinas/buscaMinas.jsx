@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import HomeMenuButton from "../common/HomeMenuButton";
 import '../../styles/buscaMinas/buscaMinas.css';
 
-function BuscaMinas() {
-    const [rows, setRows] = useState(4); // Inicial tamaño de filas
-    const [cols, setCols] = useState(4); // Inicial tamaño de columnas
-    const [totalMines, setTotalMines] = useState(2); // Inicial número de minas
+
+function BuscaMinas({ screenChanger }) {
+    const [rows, setRows] = useState(4);
+    const [cols, setCols] = useState(4);
+    const [totalMines, setTotalMines] = useState(2);
     const [grid, setGrid] = useState([]);
     const [minesLeft, setMinesLeft] = useState(totalMines);
     const [gameOver, setGameOver] = useState(false);
     const [gameWon, setGameWon] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(60); // Tiempo inicial para el nivel
+    const [currentLevel, setCurrentLevel] = useState(1); // Nivel actual
 
     const createGrid = () => {
         let newGrid = [];
@@ -19,7 +22,9 @@ function BuscaMinas() {
                 newRow.push({
                     revealed: false,
                     mine: false,
+                    flagged: false,
                     adjacentMines: 0,
+                    status: "", // "correct" o "incorrect" para indicar si la casilla está marcada correctamente
                 });
             }
             newGrid.push(newRow);
@@ -73,11 +78,27 @@ function BuscaMinas() {
         setMinesLeft(totalMines);
         setGameOver(false);
         setGameWon(false);
+        setTimeLeft(60 * currentLevel); // Ajusta el tiempo según el nivel
     };
 
     useEffect(() => {
         initializeGame();
-    }, [rows, cols, totalMines]);
+    }, [rows, cols, totalMines, currentLevel]);
+
+    useEffect(() => {
+        if (timeLeft <= 0) {
+            setGameOver(true);
+            alert("¡Tiempo agotado! Has perdido.");
+        }
+
+        if (!gameOver && !gameWon) {
+            const timer = setInterval(() => {
+                setTimeLeft((prev) => prev - 1);
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }
+    }, [timeLeft, gameOver, gameWon]);
 
     const handleCellClick = (row, col) => {
         if (gameOver || gameWon) return;
@@ -104,6 +125,33 @@ function BuscaMinas() {
         if (checkWin(newGrid)) {
             setGameWon(true);
         }
+    };
+
+    const handleCellRightClick = (e, row, col) => {
+        e.preventDefault();
+
+        if (gameOver || gameWon) return;
+
+        let newGrid = [...grid];
+        let cell = newGrid[row][col];
+
+        if (cell.revealed) return;
+
+        cell.flagged = !cell.flagged;
+
+        if (cell.flagged) {
+            if (cell.mine) {
+                setTimeLeft((prev) => prev + 5); // Suma tiempo si acierta
+                cell.status = "correct";
+            } else {
+                setTimeLeft((prev) => prev - 5); // Resta tiempo si se equivoca
+                cell.status = "incorrect";
+            }
+        } else {
+            cell.status = "";
+        }
+
+        setGrid(newGrid);
     };
 
     const revealAdjacentCells = (grid, row, col) => {
@@ -150,25 +198,41 @@ function BuscaMinas() {
         return true;
     };
 
-    const nextLevel = () => {
-        setRows((prev) => prev + 2);
-        setCols((prev) => prev + 2);
-        setTotalMines((prev) => Math.ceil(prev * 1.5));
+    const resetGame = () => {
+        setRows(4);
+        setCols(4);
+        setTotalMines(2);
+        setCurrentLevel(1);
         initializeGame();
     };
 
-    const resetGame = () => {
-        setRows(8);
-        setCols(8);
-        setTotalMines(10);
-        initializeGame();
+    const nextLevel = () => {
+        if (currentLevel < 3) {
+            setCurrentLevel((prev) => prev + 1);
+            if (currentLevel === 1) {
+                setRows(6);
+                setCols(6);
+                setTotalMines(4);
+                setTimeLeft(90);
+            } else if (currentLevel === 2) {
+                setRows(12);
+                setCols(12);
+                setTotalMines(12); // Triple de minas que el nivel 2
+                setTimeLeft(120);
+            }
+        } else {
+            alert("¡Has completado todos los niveles!");
+            resetGame();
+        }
     };
 
     return (
-        <div>
-            <h1>BuscaMinas</h1>
+        <div id="mainFrameMine">
+            <h1 id="mineTitle">BuscaMinas</h1>
             <div className="game-info">
-                <div className="counter">{minesLeft}</div>
+                <div className="counter">Minas restantes: {minesLeft}</div>
+                <div className="timer">Tiempo restante: {timeLeft} s</div>
+                <div className="level">Nivel: {currentLevel}</div>
                 <button className="reset-button" onClick={resetGame}>
                     Reiniciar
                 </button>
@@ -177,31 +241,45 @@ function BuscaMinas() {
                 className="grid-container"
                 style={{
                     gridTemplateColumns: `repeat(${cols}, 1fr)`,
-                    gridTemplateRows: `repeat(${rows}, 1fr)`,
+                    gridTemplateRows: `repeat(${rows}, 1fr)`
                 }}
             >
                 {grid.map((row, rowIndex) =>
                     row.map((cell, colIndex) => (
                         <button
                             key={`${rowIndex}-${colIndex}`}
-                            className={`cell ${cell.revealed ? "revealed" : ""}`}
+                            className={`cell ${
+                                cell.revealed
+                                    ? "revealed"
+                                    : cell.status === "correct"
+                                    ? "correct"
+                                    : cell.status === "incorrect"
+                                    ? "incorrect"
+                                    : ""
+                            }`}
                             onClick={() => handleCellClick(rowIndex, colIndex)}
+                            onContextMenu={(e) => handleCellRightClick(e, rowIndex, colIndex)}
                         >
-                            {cell.revealed &&
-                                (cell.mine
-                                    ? "💣"
-                                    : cell.adjacentMines > 0
-                                    ? cell.adjacentMines
-                                    : "")}
+                            {cell.flagged
+                                ? "🚩"
+                                : cell.revealed &&
+                                  (cell.mine
+                                      ? "💣"
+                                      : cell.adjacentMines > 0
+                                      ? cell.adjacentMines
+                                      : "")}
                         </button>
                     ))
                 )}
             </div>
             {gameWon && (
                 <div className="game-end">
-                    <p>¡Nivel completado!</p>
-                    <button onClick={nextLevel}>Siguiente Nivel</button>
-                    <button onClick={resetGame}>Reiniciar</button>
+                    <p>¡Has ganado el nivel {currentLevel}!</p>
+                    {currentLevel < 3 ? (
+                        <button onClick={nextLevel}>Siguiente Nivel</button>
+                    ) : (
+                        <button onClick={resetGame}>Reiniciar</button>
+                    )}
                 </div>
             )}
             {gameOver && (
